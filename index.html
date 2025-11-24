@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ODS Group — 회사 소개</title>
+  <meta name="description" content="AI·HRD·HRM 컨설팅 전문 ODS Group의 회사 소개 페이지입니다." />
+  <meta property="og:title" content="ODS Group — 회사 소개" />
+  <meta property="og:description" content="AI·HRD·HRM 컨설팅 전문 ODS Group의 회사 소개 페이지입니다." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="logo.png" />
+
+  <style>
+    /* ===== 밝은 톤 팔레트 ===== */
+    :root{
+      --bg:#f9fbff;
+      --card:#ffffff;
+      --text:#0b1b34;
+      --muted:#667085;
+      --brand:#0a84ff;
+      --accent:#35b0ff;
+      --border:rgba(0,0,0,.08);
+      --shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;color:var(--text);
+      background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Noto Sans KR,Apple SD Gothic Neo,'Malgun Gothic','Helvetica Neue',Arial,sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92vw);margin:0 auto}
+
+    /* ===== 헤더 ===== */
+    header{
+      position:sticky;top:0;z-index:30;
+      background:#fff;border-bottom:1px solid var(--border);backdrop-filter:saturate(1.2) blur(8px);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#000}
+    .brand-logo-img{width:36px;height:36px;object-fit:contain;border-radius:8px;background:transparent;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu a{padding:8px 10px;border-radius:10px;color:#344054;font-weight:500}
+    .menu a:hover{color:#000;background:rgba(0,0,0,.04)}
+    .cta{padding:10px 14px;border-radius:12px;background:linear-gradient(120deg,var(--brand),var(--accent));color:#fff;font-weight:600;box-shadow:0 4px 12px rgba(10,132,255,.25)}
+    @media(max-width:920px){
+      .menu{display:none}
+      .menu.open{display:flex;flex-direction:column;gap:8px;position:absolute;top:58px;right:4vw;background:#fff;padding:12px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
+      .hamburger{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.9)}
+    }
+    @media(min-width:921px){.hamburger{display:none}}
+
+    /* 헤더-히어로 사이 얇은 구분선 */
+    header::after{
+      content:"";display:block;width:100%;height:2px;margin:0;
+      background:linear-gradient(to right,#eef2f6,#e3e8ef,#eef2f6);
+    }
+
+    /* ===== 이미지 히어로 + 점 네비 + 화살표 ===== */
+    .slider{position:relative;width:100%;height:clamp(380px,56vw,560px);overflow:hidden;background:#fff}
+    .slides{display:flex;width:100%;height:100%;transition:transform .6s ease}
+    .slide{min-width:100%;height:100%;position:relative}
+    .slide::before{
+      content:"";position:absolute;inset:0;
+      background-size:contain; background-repeat:no-repeat; background-position:center;
+      background-color:#fff;
+    }
+    .slide.s1::before{background-image:url('hero-1.jpg')}
+    .slide.s2::before{background-image:url('hero-2.jpg')}
+    .slide.s3::before{background-image:url('hero-3.jpg')}
+
+    .dots{position:absolute;left:0;right:0;bottom:16px;display:flex;gap:10px;justify-content:center;z-index:3}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.28);cursor:pointer}
+    .dot.active{background:#0b1b34;width:24px;border-radius:999px;transition:width .3s ease}
+
+    .arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:48px;height:48px;border:1px solid var(--border);
+      background:rgba(255,255,255,.85);color:#333;font-size:28px;font-weight:700;
+      cursor:pointer;display:grid;place-items:center;transition:all .25s ease;z-index:4;box-shadow:0 2px 10px rgba(0,0,0,.08);
+    }
+    .arrow:hover{background:#0a84ff;color:#fff;border-color:#0a84ff;transform:translateY(-50%) scale(1.08)}
+    .arrow.prev{left:0;border-radius:0 50% 50% 0}
+    .arrow.next{right:0;border-radius:50% 0 0 50%}
+    @media (max-width:768px){.arrow{width:40px;height:40px;font-size:24px}}
+
+    /* ===== 섹션 공통 + 구분 디자인 ===== */
+    section{ position:relative; padding:72px 0; }
+    .section-title{
+      font-size:28px;margin:0 0 8px;color:var(--text);
+      padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.06);
+      position:relative;
+    }
+    .section-title::after{
+      content:""; position:absolute; left:0; bottom:-1px; width:56px; height:2px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+    }
+    .section-desc{color:var(--muted);margin:16px 0 28px}
+
+    /* 섹션 사이 상단 그라데이션 */
+    section + section::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:56px;
+      background:linear-gradient(180deg,#eef2f6,rgba(238,242,246,0));
+      pointer-events:none; opacity:.7;
+    }
+
+    .divider{
+      height:1px; margin:36px 0;
+      background:linear-gradient(90deg, rgba(2,6,23,.06), rgba(2,6,23,.16), rgba(2,6,23,.06));
+      border-radius:999px;
+    }
+
+    .stripe{
+      background:linear-gradient(180deg,#ffffff 0%, #f6f9ff 100%);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+
+    /* 카드류 공통 그림자/보더 */
+    .card, .info .block, .service-card, .best-card, .theme-strip, .logo-strip {
+      box-shadow:0 8px 24px rgba(0,0,0,.06);
+      border:1px solid var(--border);
+    }
+
+    /* ===== 테마 선택 ===== */
+    .theme-strip{background:#fff;color:#0b1b34;border-radius:16px;padding:28px 24px 12px;margin-top:8px}
+    .theme-head{font-weight:800;font-size:18px;margin:0 0 14px;letter-spacing:-.2px}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+    .theme-item{
+      display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;
+      background:#fff;transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      color:inherit;text-decoration:none;border:1px solid var(--border);
+    }
+    .theme-item:hover,.theme-item:focus-visible{
+      transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.06);border-color:#cfe8ff;outline:none;
+    }
+    .theme-ico{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#eef5ff;color:var(--brand);font-size:18px}
+    .theme-label{font-weight:700}
+    .theme-sub{font-size:12px;color:#667085;line-height:1.2}
+    .theme-text{display:grid;gap:2px}
+
+    /* ===== 로고 스트립 ===== */
+    .logo-strip{
+      position:relative;overflow:hidden;border-radius:14px;background:#fff;
+      padding:12px 0;margin-top:8px;margin-bottom:4px;
+    }
+    .logo-strip::before,.logo-strip::after{
+      content:"";position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none;
+    }
+    .logo-strip::before{left:0;background:linear-gradient(to right,#fff,rgba(255,255,255,0))}
+    .logo-strip::after{right:0;background:linear-gradient(to left,#fff,rgba(255,255,255,0))}
+    .logo-track{display:flex;gap:28px;align-items:center;width:max-content;animation:scroll-logos 30s linear infinite}
+    .logo-item{height:56px;min-width:160px;display:grid;place-items:center;padding:0 8px}
+    .logo-item img{max-height:48px;max-width:160px;object-fit:contain}
+    @keyframes scroll-logos{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ===== 베스트 프로그램 ===== */
+    .best{padding:72px 0}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .tab{
+      padding:8px 12px;border-radius:999px;border:1px solid var(--border);
+      background:#fff;color:#0b1b34;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);
+    }
+    .tab.active{background:#0b1b34;color:#fff;border-color:#0b1b34}
+    .best-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:920px){
+      .best-grid{
+        display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,75%);
+        overflow-x:auto;gap:12px;padding-bottom:6px;scroll-snap-type:x mandatory;
+      }
+      .best-card{scroll-snap-align:start}
+    }
+    .best-card{background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+    .best-thumb{width:100%;height:160px;object-fit:cover;display:block;background:#e9eef7}
+    .best-body{padding:14px 16px;display:grid;gap:8px}
+    .best-title{font-size:17px;margin:0;color:#0b1b34}
+    .best-meta{display:flex;gap:8px;flex-wrap:wrap}
+    .badge-sm{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border);color:#475467;background:#f8fafc}
+    .best-list{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
+    .best-cta{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 16px;border-top:1px solid var(--border);
+    }
+    .best-cta a{font-weight:700;color:#0a84ff}
+
+    /* ===== 서비스 ===== */
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:20px}
+    .service-card{
+      background:#fff;border-radius:16px;overflow:hidden;
+      transition:transform .2s ease,box-shadow .2s ease;
+      border:1px solid var(--border);box-shadow:var(--shadow);
+    }
+    .service-card img{width:100%;height:180px;object-fit:cover;display:block}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+    .caption{
+      padding:12px 14px;font-size:15px;color:#0b1b34;
+      background:#fff;border-top:1px solid var(--border);
+    }
+
+    /* ===== 연락처 ===== */
+    .info{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .info .block{
+      background:#fff;border-radius:16px;padding:18px;
+      box-shadow:var(--shadow);border:1px solid var(--border);
+    }
+    .dl{display:grid;grid-template-columns:120px 1fr;gap:6px 14px;color:var(--muted)}
+    footer{padding:40px 0 60px;color:#667085;border-top:1px solid var(--border);background:#fff}
+
+    .btn{
+      padding:12px 16px;border:1px solid var(--border);border-radius:12px;
+      font-weight:600;background:linear-gradient(120deg,var(--brand),var(--accent));
+      color:#fff;box-shadow:0 4px 12px rgba(10,132,255,.25);
+    }
+    .btn:hover{filter:brightness(0.96)}
+
+    @media (min-width: 921px) {
+      .best-grid > *:not(:last-child) .best-cta,
+      .service-grid > *:not(:last-child) .caption {
+        border-bottom: 1px dashed rgba(0,0,0,.06);
+      }
+    }
+/* ===== 이미지형 카테고리 카드 ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+  text-decoration: none;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+.cat-thumb {
+  width: 100%;
+  height: 180px;         /* 기존 140px → 180px로 크게 */
+  object-fit: contain;   /* 이미지 전체 보임 */
+  background: #f2f5fb;   /* 밝은 배경 */
+  padding: 4px;          /* 최소 여백만 유지 */
+}
+
+.cat-body {
+  padding: 16px;
+}
+
+.cat-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #0b1b34;
+}
+
+.cat-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.contact-full {
+  width: 100%;
+  background: #f3f6fb;
+  padding: 50px 0;
+  margin-top: 40px;
+}
+
+.contact-inner {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px 20px;
+  font-size: 15px;
+}
+
+.contact-grid div:nth-child(odd) {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.contact-grid div:nth-child(even) {
+  color: var(--muted);
+}
+
+/* ===== 카카오톡 상담 버튼 ===== */
+#kakao-btn {
+  position: fixed;
+  right: 140px;   /* ← 기존 24px → 120px로 변경 */
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00c73c;
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 2000;
+}
+
+#kakao-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+}
+
+/* ===== 카카오톡 버튼 툴팁 (항상 표시 버전) ===== */
+#kakao-btn {
+  position: fixed;
+  right: 140px;
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00c73c;
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 2000;
+}
+
+/* 툴팁 (항상 표시) */
+.kakao-tooltip {
+  position: absolute;
+  bottom: 75px;
+  left: 50px;  /* 기존 -10px에서 -40px로 살짝 이동 */
+  transform: translateX(-100%);
+  background: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+/* 말풍선 꼬리 */
+.kakao-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 26px;   /* 기존보다 6px 정도 더 왼쪽으로 조정 */
+  border-width: 6px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="홈으로">
+        <img src="logo.png" alt="ODS Group 로고" class="brand-logo-img">
+        <span>ODS Group</span>
+      </a>
+      <nav>
+        <button class="hamburger" aria-label="메뉴 열기" onclick="document.querySelector('.menu').classList.toggle('open')">≡</button>
+        <div class="menu" role="menu">
+          <a href="partners.html">고객사</a>
+          <a href="#themes">테마</a>
+          <a href="#best">베스트</a>
+          <a href="#contact" class="cta">문의</a>
+          
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 히어로 -->
+  <section id="top" class="slider" aria-label="주요 섹션 슬라이드" aria-live="polite">
+    <div class="slides">
+      <div class="slide s1" aria-label="슬라이드 1"></div>
+      <div class="slide s2" aria-label="슬라이드 2"></div>
+      <div class="slide s3" aria-label="슬라이드 3"></div>
+    </div>
+    <button class="arrow prev" aria-label="이전 슬라이드">&#10094;</button>
+    <button class="arrow next" aria-label="다음 슬라이드">&#10095;</button>
+    <div class="dots" role="tablist" aria-label="슬라이드 선택">
+      <div class="dot" role="tab" aria-label="1번 슬라이드"></div>
+      <div class="dot" role="tab" aria-label="2번 슬라이드"></div>
+      <div class="dot" role="tab" aria-label="3번 슬라이드"></div>
+    </div>
+  </section>
+
+  <!-- 함께한 곳 (먼저 배치) -->
+  <section id="partners">
+    <div class="container">
+      <h2 class="section-title">함께한 곳</h2>
+      <p class="section-desc">ODS 그룹과 함께한 파트너입니다.</p>
+   <p style="margin-bottom:20px;">
+      <a href="partners.html" style="
+        display:inline-flex;align-items:center;gap:6px;
+        font-size:13px;padding:6px 12px;border-radius:999px;
+        border:1px solid rgba(0,0,0,.08);background:#ffffff;
+        color:#0a84ff;
+      ">
+        전체 로고 한 번에 보기 →
+      </a>
+    </p>
+      <div class="logo-strip" aria-label="파트너 로고 무한 스크롤 목록">
+        <div class="logo-track">
+          <div class="logo-item"><img src="kyungshin%20logo.png" alt="Kyungshin"></div>
+          <div class="logo-item"><img src="SK%20logo.svg" alt="SK"></div>
+          <div class="logo-item"><img src="Shinsegae%20I%20%26%20C.jpg" alt="Shinsegae I&C"></div>
+          <div class="logo-item"><img src="bucheon.png" alt="Bucheon"></div>
+          <div class="logo-item"><img src="yongma.png" alt="Yongma"></div>
+          <div class="logo-item"><img src="hyundae-bng.png" alt="Hyundae BNG"></div>
+          <div class="logo-item"><img src="partner-07.png" alt="Partner 07"></div>
+          <div class="logo-item"><img src="partner-08.png" alt="Partner 08"></div>
+          <div class="logo-item"><img src="partner-09.png" alt="Partner 09"></div>
+          <div class="logo-item"><img src="partner-10.png" alt="Partner 10"></div>
+<div class="logo-item"><img src="partner-11.png" alt="Partner 11"></div>
+<div class="logo-item"><img src="partner-12.png" alt="Partner 12"></div>
+<div class="logo-item"><img src="partner-13.png" alt="Partner 13"></div>
+<div class="logo-item"><img src="partner-14.png" alt="Partner 14"></div>
+<div class="logo-item"><img src="partner-15.png" alt="Partner 15"></div>
+<div class="logo-item"><img src="partner-16.png" alt="Partner 16"></div>
+<div class="logo-item"><img src="partner-17.png" alt="Partner 17"></div>
+<div class="logo-item"><img src="partner-18.png" alt="Partner 18"></div>
+<div class="logo-item"><img src="partner-19.png" alt="Partner 19"></div>
+
+
+          <!-- 반복 트랙 -->
+          <div class="logo-item"><img src="kyungshin%20logo.png" alt="Kyungshin"></div>
+          <div class="logo-item"><img src="SK%20logo.svg" alt="SK"></div>
+          <div class="logo-item"><img src="Shinsegae%20I%20%26%20C.jpg" alt="Shinsegae I&C"></div>
+          <div class="logo-item"><img src="bucheon.png" alt="Bucheon"></div>
+          <div class="logo-item"><img src="yongma.png" alt="Yongma"></div>
+          <div class="logo-item"><img src="hyundae-bng.png" alt="Hyundae BNG"></div>
+          <div class="logo-item"><img src="partner-07.png" alt="Partner 07"></div>
+          <div class="logo-item"><img src="partner-08.png" alt="Partner 08"></div>
+          <div class="logo-item"><img src="partner-09.png" alt="Partner 09"></div>
+          <div class="logo-item"><img src="partner-10.png" alt="Partner 10"></div>
+<div class="logo-item"><img src="partner-11.png" alt="Partner 11"></div>
+<div class="logo-item"><img src="partner-12.png" alt="Partner 12"></div>
+<div class="logo-item"><img src="partner-13.png" alt="Partner 13"></div>
+<div class="logo-item"><img src="partner-14.png" alt="Partner 14"></div>
+<div class="logo-item"><img src="partner-15.png" alt="Partner 15"></div>
+<div class="logo-item"><img src="partner-16.png" alt="Partner 16"></div>
+<div class="logo-item"><img src="partner-17.png" alt="Partner 17"></div>
+<div class="logo-item"><img src="partner-18.png" alt="Partner 18"></div>
+<div class="logo-item"><img src="partner-19.png" alt="Partner 19"></div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 어떤 교육을 찾고 계신가요? (이미지 카드 4개 버전) -->
+<section id="themes" class="stripe">
+  <div class="container theme-strip" aria-label="교육 테마 선택">
+    <h2 class="section-title">어떤 교육을 찾고 계신가요?</h2>
+
+    <div class="category-grid">
+      <!-- 1. AI & AX -->
+      <a class="category-card" href="ai-ax.html">
+        <img src="cat-ai.jpg" class="cat-thumb" alt="AI & AX">
+        <div class="cat-body">
+          <h3 class="cat-title">AI &amp; AX</h3>
+          <p class="cat-sub">AI 활용·업무 자동화·Agent</p>
+        </div>
+      </a>
+
+      <!-- 2. 성과관리 -->
+      <a class="category-card" href="performance.html">
+        <img src="cat-performance.jpg" class="cat-thumb" alt="성과관리">
+        <div class="cat-body">
+          <h3 class="cat-title">성과관리</h3>
+          <p class="cat-sub">목표·지표·피드백·리뷰</p>
+        </div>
+      </a>
+
+      <!-- 3. 리더십 -->
+      <a class="category-card" href="leadership.html">
+        <img src="cat-leadership.jpg" class="cat-thumb" alt="리더십">
+        <div class="cat-body">
+          <h3 class="cat-title">리더십</h3>
+          <p class="cat-sub">코칭·소통·동기부여</p>
+        </div>
+      </a>
+
+      <!-- 4. HRM -->
+      <a class="category-card" href="hrm.html">
+        <img src="cat-hrm.jpg" class="cat-thumb" alt="HRM">
+        <div class="cat-body">
+          <h3 class="cat-title">HRM</h3>
+          <p class="cat-sub">인사·조직관리·제도 설계</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="container"><div class="divider"></div></div>
+</section>
+
+  <!-- 베스트 프로그램 -->
+  <section id="best" class="best stripe">
+    <div class="container">
+      <h2 class="section-title">베스트 프로그램</h2>
+      <p class="section-desc">가장 만족도가 높은 대표 과정들을 모았습니다.</p>
+
+ 
+
+      <div class="best-grid">
+        <article class="best-card">
+          <img class="best-thumb" src="best-01.jpg" alt="조직활성화 비전시티" loading="lazy">
+          <div class="best-body">
+            <h3 class="best-title">실무자 필수 기획력</h3>
+            <div class="best-meta"><span class="badge-sm">1일 과정</span><span class="badge-sm">워크숍</span><span class="badge-sm">조직문화</span></div>
+            <ul class="best-list">
+              <li>조직 내 의사소통</li>
+              <li>협업방식</li>
+              <li>직장생활의 즐거음</li>
+            </ul>
+          </div>
+      
+        </article>
+
+        <article class="best-card">
+          <img class="best-thumb" src="best-02.jpg" alt="리더십 부스트" loading="lazy">
+          <div class="best-body">
+            <h3 class="best-title">리더십 부스트</h3>
+            <div class="best-meta"><span class="badge-sm">1일 과정</span><span class="badge-sm">리더십</span><span class="badge-sm">코칭</span></div>
+            <ul class="best-list">
+              <li>역할 전환과 신뢰 형성</li>
+              <li>동기부여·피드백 스킬</li>
+              <li>리더의 실행력 루틴</li>
+            </ul>
+          </div>
+     
+        </article>
+
+        <article class="best-card">
+          <img class="best-thumb" src="best-03.jpg" alt="AI 업무 혁신 실전" loading="lazy">
+          <div class="best-body">
+            <h3 class="best-title">AI 업무 혁신 실전</h3>
+            <div class="best-meta"><span class="badge-sm">1일 · 실습</span><span class="badge-sm">AI·자동화</span></div>
+            <ul class="best-list">
+              <li>질문을 잘하는 스킬</li>
+              <li>업무 효율화 혁신</li>
+              <li>정책/보안 가이드라인</li>
+            </ul>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 연락처 -->
+  <section id="contact" class="contact-full">
+  <div class="contact-inner">
+    <h2 class="section-title">연락처</h2>
+
+    <div class="contact-grid">
+      <div>회사명</div><div>오디에스그룹</div>
+      <div>대표메일</div><div>odsgroup1@naver.com</div>
+      <div>대표번호</div><div>070-8778-9816</div>
+      <div>주소</div><div>서울시 성동구 왕십리로 58, 비204</div>
+      <div>사업자등록번호</div><div>584-86-00273</div>
+      <div>블로그</div><div><a href="#" target="_blank">바로가기</a></div>
+    </div>
+  </div>
+</section>
+
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;">
+      <small>© <span id="year"></span> ODS Group. All rights reserved.</small>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="#top" class="btn" style="padding:8px 12px;">맨 위로 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 슬라이더
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const slideEls = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let index = 0, autoTimer = null, autoplayMs = 5000;
+
+    function go(i){
+      index = (i + slideEls.length) % slideEls.length;
+      slides.style.transform = `translateX(${-100 * index}%)`;
+      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    }
+    function next(){ go(index+1); }
+    function prev(){ go(index-1); }
+    function startAuto(){ stopAuto(); autoTimer = setInterval(next, autoplayMs); }
+    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+
+    go(0); startAuto();
+
+    dots.forEach((d,di)=>d.addEventListener('click', ()=>{ go(di); startAuto(); }));
+    document.querySelector('.arrow.next').addEventListener('click', ()=>{ next(); startAuto(); });
+    document.querySelector('.arrow.prev').addEventListener('click', ()=>{ prev(); startAuto(); });
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    window.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight'){ next(); startAuto(); }
+      if(e.key==='ArrowLeft'){ prev(); startAuto(); }
+    });
+
+    let sx=0,dx=0;
+    slider.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; dx=0; stopAuto(); }, {passive:true});
+    slider.addEventListener('touchmove', e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+    slider.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx<0?next():prev(); } startAuto(); });
+  </script>
+<!-- 카카오톡 상담 버튼 -->
+<div id="kakao-btn" onclick="openKakaoChat()">
+  💬
+ <span class="kakao-tooltip">카카오톡 문의하기</span>
+</div>
+<script>
+  function openKakaoChat() {
+    // 여기에 너의 카카오톡 채팅 주소를 넣으면 돼!
+    var kakaoUrl = "https://pf.kakao.com/_jxaRYn/chat";
+
+    // 새 창(새 탭)으로 열기
+    window.open(kakaoUrl, "_blank");
+  }
+</script>
+
+
+
+</body>
+</html>

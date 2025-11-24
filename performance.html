@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>성과관리 교육 – ODS Group</title>
+  <link rel="icon" href="logo.png" />
+
+  <style>
+    :root{
+      --bg:#f9fbff;--card:#ffffff;--text:#0b1b34;
+      --muted:#667085;--brand:#0a84ff;--accent:#35b0ff;
+      --border:rgba(0,0,0,.10);--shadow:0 8px 24px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f9fbff,#ffffff);
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Noto Sans KR,'Helvetica Neue',Arial,sans-serif;
+      color:var(--text);line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1100px,92vw);margin:0 auto}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:20;
+      background:#fff;border-bottom:1px solid var(--border);
+      backdrop-filter:blur(8px);
+    }
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 0;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand-logo-img{width:32px;height:32px;border-radius:8px;object-fit:contain}
+    .back-link{font-size:14px;color:var(--brand)}
+
+    /* HERO VIDEO */
+    .hero-video{
+      width:100%;height:340px;
+      border-radius:20px;overflow:hidden;
+      margin:40px 0;box-shadow:var(--shadow);
+    }
+    .video-bg{
+      width:100%;height:100%;object-fit:cover;
+    }
+
+    /* SECTION TITLE */
+    .section-title{
+      font-size:26px;font-weight:800;margin-bottom:6px;
+    }
+    .section-desc{
+      color:var(--muted);margin-top:0;margin-bottom:18px;
+    }
+
+    /* KEY PROGRAM GRID */
+    .ax-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;margin-top:16px;
+    }
+    .ax-card{
+      background:#fff;border-radius:16px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      overflow:hidden;transition:.2s;
+      padding-bottom:18px;
+    }
+    .ax-card img{
+      width:100%;height:160px;object-fit:cover;
+      border-radius:16px 16px 0 0;
+    }
+    .ax-card h3{
+      margin:12px 14px 4px;font-size:17px;
+    }
+    .ax-card p{
+      margin:0 14px;color:var(--muted);font-size:14px;
+    }
+    .ax-card:hover{
+      transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.12);
+    }
+
+    /* GALLERY */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:12px;margin-top:10px;
+    }
+    .gallery-grid img{
+      width:100%;height:160px;object-fit:cover;border-radius:12px;
+    }
+
+    /* INFO SECTION */
+    .info-box{
+      background:#fff;border:1px solid var(--border);
+      box-shadow:var(--shadow);border-radius:16px;
+      padding:28px;margin-top:20px;
+    }
+    .info-box ul{margin-top:12px;padding-left:18px}
+    .info-box li{margin-bottom:6px;color:var(--muted)}
+
+    /* CTA */
+    .cta-section{text-align:center;margin:50px 0 80px}
+    .cta-btn{
+      background:var(--brand);color:#fff;
+      padding:14px 28px;border-radius:12px;
+      font-size:16px;font-weight:600;
+      display:inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="index.html#top" class="brand">
+        <img src="logo.png" class="brand-logo-img" alt="ODS Group 로고">
+        <span>ODS Group</span>
+      </a>
+      <a href="index.html#themes" class="back-link">← 메인으로 돌아가기</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- VIDEO : 성과관리 인트로 영상 -->
+      <section class="hero-video">
+        <video class="video-bg" autoplay muted playsinline loop>
+          <!-- 성과관리용 영상 파일명으로 교체해서 사용 -->
+          <source src="performance-education.mp4" type="video/mp4">
+        </video>
+      </section>
+
+      <!-- KEY PROGRAM -->
+      <section>
+        <h2 class="section-title">성과관리 핵심 프로그램</h2>
+        <p class="section-desc">
+          목표 설정부터 피드백, 평가 운영까지 한 흐름으로 연결하는 실전 과정입니다.
+        </p>
+
+        <div class="ax-grid">
+          <div class="ax-card">
+            <img src="perf_key01.jpg" alt="목표·지표 설정 워크숍">
+            <h3>목표·지표 설정 워크숍</h3>
+            <p>OKR·KPI를 기반으로 조직·팀·개인의 목표를 정렬합니다.</p>
+          </div>
+
+          <div class="ax-card">
+            <img src="perf_key02.jpg" alt="성과 코칭 & 피드백">
+            <h3>성과 코칭 &amp; 피드백</h3>
+            <p>리더가 성과 대화를 설계하고 실행하는 방법을 실습합니다.</p>
+          </div>
+
+          <div class="ax-card">
+            <img src="perf_key03.jpg" alt="평가제도 운영 역량 강화">
+            <h3>평가제도 운영 역량 강화</h3>
+            <p>공정성과 납득성을 높이는 평가 운영·보상 연계 포인트를 다룹니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section style="margin-top:50px;">
+        <h2 class="section-title">성과관리 교육 현장 스케치</h2>
+        <p class="section-desc">
+          실제 워크숍과 교육 장면을 통해 성과 대화가 어떻게 이루어지는지 보여드립니다.
+        </p>
+
+        <div class="gallery-grid">
+          <!-- 여기에는 성과관리 교육 실사진을 넣으면 좋아요 -->
+          <img src="perf_real01.jpg" alt="성과관리 교육 사진 1">
+          <img src="perf_real02.jpg" alt="성과관리 교육 사진 2">
+          <img src="perf_real03.jpg" alt="성과관리 교육 사진 3">
+          <img src="perf_real04.jpg" alt="성과관리 교육 사진 4">
+        </div>
+      </section>
+
+      <!-- INFO -->
+      <section class="ax-info">
+        <div class="info-box">
+          <h2>성과관리 교육 소개</h2>
+          <p>
+            성과관리는 ‘연말 평가’가 아니라, 한 해 동안 이어지는 목표–실행–피드백–성과대화의 흐름입니다.<br>
+            ODS Group의 성과관리 과정은 현업 리더와 실무자가 바로 적용할 수 있는
+            실습 중심 워크숍으로 설계되어 있습니다.
+          </p>
+
+          <ul>
+            <li>조직 전략과 연계된 OKR·KPI 설계 방법</li>
+            <li>분기·월 단위 리뷰 미팅(성과회의) 운영 포인트</li>
+            <li>성과 코칭 대화 구조(칭찬·피드백·코칭 질문)</li>
+            <li>평가 오류 최소화 &amp; 공정성 확보를 위한 체크리스트</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <a href="mailto:odsgroup1@naver.com" class="cta-btn">성과관리 교육 문의하기 →</a>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
