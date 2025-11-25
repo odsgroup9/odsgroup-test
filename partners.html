@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>함께한 곳 – ODS Group</title>
-  <meta name="description" content="ODS Group와 함께한 고객사 로고 모음 페이지입니다." />
+  <meta name="description" content="오디에스그룹과 함께한 고객사 로고 모음 페이지입니다." />
   <link rel="icon" href="logo.png" />
 
   <style>
@@ -36,7 +36,7 @@
     }
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#000}
-    .brand-logo-img{width:32px;height:32px;object-fit:contain;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    .brand-logo-img{width:60px;height:60px;object-fit:contain;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
     .nav a{font-size:14px;color:#344054}
     .nav a:hover{text-decoration:underline}
 
@@ -60,19 +60,20 @@
       gap:16px;
     }
     .logo-card{
-      background:#f5f8fc;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,.04);
-      padding:10px;
-      display:grid;
-      place-items:center;
-      height:80px;
-    }
+    background: #ffffff !important; /* 완전 흰색 */
+    border-radius: 12px; /* 모서리 둥글게(선택) */
+    padding: 24px;       /* 로고와 박스 사이 여백 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e9ecef; /* 살짝 라인(선택) */
+}
     .logo-card img{
       max-width:100%;
       max-height:60px;
       object-fit:contain;
     }
+
 
     .top-bar{
       display:flex;justify-content:space-between;align-items:center;
@@ -100,7 +101,7 @@
     <div class="container nav">
       <a href="index.html#top" class="brand" aria-label="ODS Group 메인으로">
         <img src="logo.png" alt="ODS Group 로고" class="brand-logo-img">
-        <span>ODS Group</span>
+        <span>오디에스그룹</span>
       </a>
       <a href="index.html#top">메인으로 돌아가기</a>
     </div>
@@ -110,14 +111,14 @@
     <div class="container">
       <div class="top-bar">
         <div>
-          <h1>함께한 곳</h1>
-          <p class="subtitle">ODS Group와 함께 성장해 온 고객사입니다.</p>
+          <h1>오디에스그룹파트너</h1>
+          <p class="subtitle">오디에스그룹과 함께 성장해 온 고객사입니다.</p>
         </div>
         <a href="index.html#partners" class="back-link">← 메인 페이지 보기</a>
       </div>
 
       <div class="grid-wrapper">
-        <div class="pill">로고 전체 보기</div>
+    
         <div class="logo-grid">
           <!-- 아래 img src 부분을 실제 파일명에 맞게 변경해서 계속 추가하면 돼요 -->
           <div class="logo-card"><img src="kyungshin%20logo.png" alt="Kyungshin"></div>
@@ -148,7 +149,7 @@
 
   <footer>
     <div class="container">
-      © <span id="year"></span> ODS Group. All rights reserved.
+      © <span id="year"></span> 오디에스그룹. All rights reserved.
     </div>
   </footer>
 
