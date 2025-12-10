@@ -146,7 +146,7 @@
           <div class="ax-card">
             <img src="lead_key01.jpg" alt="리더십 대화">
             <h3>팀원과 대화법</h3>
-            <p>다양한 팀원과의 대화법을 알아야 존중받는다.</p>
+            <p>다양한 성향의 팀원과의 대화에서 존중 받는 방법</p>
           </div>
 
           <div class="ax-card">
@@ -185,7 +185,8 @@
           <h2>리더십 교육 소개</h2>
           <p>
             리더에게 요구되는 소통·조직관리·실행력·코칭 역량을 강화하는 실전 중심 교육입니다.</br>
-“사람을 움직이고 팀의 성과를 만들어내는 리더의 역할”을 학습합니다..
+“구성원의 동기부여를 통해 조직의 성과를 이끌어내는 리더의 역할”에 대해 학습합니다.
+
           </p>
 
           <ul>
@@ -200,6 +201,56 @@
    
     </div>
   </main>
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;">
+      <small>© <span id="year"></span> ODS Group. All rights reserved.</small>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="#top" class="btn" style="padding:8px 12px;">맨 위로 ↑</a>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 슬라이더
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const slideEls = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let index = 0, autoTimer = null, autoplayMs = 5000;
+
+    function go(i){
+      index = (i + slideEls.length) % slideEls.length;
+      slides.style.transform = `translateX(${-100 * index}%)`;
+      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    }
+    function next(){ go(index+1); }
+    function prev(){ go(index-1); }
+    function startAuto(){ stopAuto(); autoTimer = setInterval(next, autoplayMs); }
+    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+
+    go(0); startAuto();
+
+    dots.forEach((d,di)=>d.addEventListener('click', ()=>{ go(di); startAuto(); }));
+    document.querySelector('.arrow.next').addEventListener('click', ()=>{ next(); startAuto(); });
+    document.querySelector('.arrow.prev').addEventListener('click', ()=>{ prev(); startAuto(); });
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    window.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight'){ next(); startAuto(); }
+      if(e.key==='ArrowLeft'){ prev(); startAuto(); }
+    });
+
+    let sx=0,dx=0;
+    slider.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; dx=0; stopAuto(); }, {passive:true});
+    slider.addEventListener('touchmove', e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+    slider.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx<0?next():prev(); } startAuto(); });
+  </script>
 </body>
 </html>

@@ -310,7 +310,7 @@
           <h2>AI & AX 교육 소개</h2>
           <p>
             AI와 에이전트 기반 업무 경험(AX)을 혁신하는 실전 중심 교육입니다.<br>
-            단순 기능 교육이 아닌 “실제 내 업무에 적용되는 AI 활용법”을 익힙니다.
+            단순 기능 교육이 아닌 “실제 업무에 적용시킬 수 있는 AI 활용법”을 익힙니다.
           </p>
 
           <ul>
@@ -326,7 +326,57 @@
 
     </div>
   </main>
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;">
+      <small>© <span id="year"></span> ODS Group. All rights reserved.</small>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="#top" class="btn" style="padding:8px 12px;">맨 위로 ↑</a>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 슬라이더
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const slideEls = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let index = 0, autoTimer = null, autoplayMs = 5000;
+
+    function go(i){
+      index = (i + slideEls.length) % slideEls.length;
+      slides.style.transform = `translateX(${-100 * index}%)`;
+      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    }
+    function next(){ go(index+1); }
+    function prev(){ go(index-1); }
+    function startAuto(){ stopAuto(); autoTimer = setInterval(next, autoplayMs); }
+    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+
+    go(0); startAuto();
+
+    dots.forEach((d,di)=>d.addEventListener('click', ()=>{ go(di); startAuto(); }));
+    document.querySelector('.arrow.next').addEventListener('click', ()=>{ next(); startAuto(); });
+    document.querySelector('.arrow.prev').addEventListener('click', ()=>{ prev(); startAuto(); });
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    window.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight'){ next(); startAuto(); }
+      if(e.key==='ArrowLeft'){ prev(); startAuto(); }
+    });
+
+    let sx=0,dx=0;
+    slider.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; dx=0; stopAuto(); }, {passive:true});
+    slider.addEventListener('touchmove', e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+    slider.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx<0?next():prev(); } startAuto(); });
+  </script>
 <script>
   let heroIndex = 0;
 

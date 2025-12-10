@@ -139,33 +139,33 @@
       <section>
         <h2 class="section-title">조직관리 핵심 프로그램</h2>
         <p class="section-desc">
-          신규 입사자 교육부터 리텐션 교육 및 동기부여 과정까지 연결되는 교육 과정입니다.
+          신규 입사자 입문 교육부터 재직자 리텐션 교육 등 구성원의 동기부여를 끌어올릴 수 있는 과정입니다.
         </p>
 
         <div class="ax-grid">
           <div class="ax-card">
             <img src="hrm_key01.jpg" alt="신규 입사자 교육">
             <h3>신규 입사자 워크숍</h3>
-            <p>신규입사자가 가져야할 자세,태도,비전을 교육합니다.</p>
+            <p>신규 입사자로서 갖춰야 할 기본적인 역량 학습</p>
           </div>
 
           <div class="ax-card">
             <img src="hrm_key02.jpg" alt="리텐션과 동기부여">
             <h3>동기부여 및 리텐션</h3>
-            <p>2~3년차가 오는 딜레마를 위한 리텐션 교육과정입니다.</p>
+            <p>입사 후 느끼게 되는 회의감, 딜레마 등을 위한 리텐션</p>
           </div>
 
           <div class="ax-card">
             <img src="hrm_key03.jpg" alt="평가제도 운영 역량 강화">
             <h3>평가제도 운영 역량 강화</h3>
-            <p>공정성과 납득성을 높이는 평가 운영·보상 연계 포인트를 다룹니다.</p>
+            <p>평가 프로세스의 공정성과 납득성을 높일 수 있는 방법</p>
           </div>
         </div>
       </section>
 
       <!-- GALLERY -->
       <section style="margin-top:50px;">
-        <h2 class="section-title">조직관리 교육 현장 스케치</h2>
+        <h2 class="section-title">교육 현장 스케치</h2>
         <p class="section-desc">
           실제 워크숍과 교육 장면을 통해 조직문화 형성이 어떻게 이루어지는지 보여드립니다.
         </p>
@@ -184,7 +184,7 @@
         <div class="info-box">
           <h2>HRM 교육 소개</h2>
           <p>
-           조직의 인사·조직관리 체계를 현대적 기준에 맞게 설계·운영할 수 있도록 하는 실무형 교육입니다.</br>
+          인사조직에 대한 전체적인 체계를 현대적 기준에 맞게 설계 및 운영할 수 있도록 도와주는 실무형 교육입니다.</br>
 “제도 중심이 아닌 구성원 경험 중심의 HR 실행력”을 강화합니다.
           </p>
 
@@ -201,6 +201,56 @@
 
     </div>
   </main>
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;">
+      <small>© <span id="year"></span> ODS Group. All rights reserved.</small>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="#top" class="btn" style="padding:8px 12px;">맨 위로 ↑</a>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 슬라이더
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const slideEls = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let index = 0, autoTimer = null, autoplayMs = 5000;
+
+    function go(i){
+      index = (i + slideEls.length) % slideEls.length;
+      slides.style.transform = `translateX(${-100 * index}%)`;
+      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    }
+    function next(){ go(index+1); }
+    function prev(){ go(index-1); }
+    function startAuto(){ stopAuto(); autoTimer = setInterval(next, autoplayMs); }
+    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+
+    go(0); startAuto();
+
+    dots.forEach((d,di)=>d.addEventListener('click', ()=>{ go(di); startAuto(); }));
+    document.querySelector('.arrow.next').addEventListener('click', ()=>{ next(); startAuto(); });
+    document.querySelector('.arrow.prev').addEventListener('click', ()=>{ prev(); startAuto(); });
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    window.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight'){ next(); startAuto(); }
+      if(e.key==='ArrowLeft'){ prev(); startAuto(); }
+    });
+
+    let sx=0,dx=0;
+    slider.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; dx=0; stopAuto(); }, {passive:true});
+    slider.addEventListener('touchmove', e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+    slider.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx<0?next():prev(); } startAuto(); });
+  </script>
 </body>
 </html>
