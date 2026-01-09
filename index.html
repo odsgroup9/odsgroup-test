@@ -190,10 +190,23 @@
 
     /* ===== 베스트 프로그램 ===== */
     .best-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    @media(max-width:920px){
-      .best-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,78%);overflow-x:auto;gap:12px;padding-bottom:6px;scroll-snap-type:x mandatory}
-      .best-card{scroll-snap-align:start}
-    }
+  @media(max-width:920px){
+  /* 모바일: 가로 스와이프(캐러셀) 형태로 표시 */
+  .best-grid{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding-bottom:10px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .best-card{
+    flex:0 0 84%;
+    max-width:420px;
+    scroll-snap-align:start;
+  }
+}
+
     .best-card{background:var(--paper);border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
     .best-thumb{width:100%;height:170px;object-fit:cover;display:block}
     .best-body{padding:14px 16px}
