@@ -260,6 +260,44 @@
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important;animation:none !important;transition:none !important}
     }
+@media (max-width:600px){
+  .contact-inner{padding:20px;}
+  .contact-grid{grid-template-columns:1fr; gap:6px;}
+  .contact-grid div:nth-child(odd){margin-top:12px;}
+}
+@media (max-width:600px){
+  section{padding:56px 0;}
+  .section-title{font-size:28px; line-height:1.2;}
+  .hero-content{padding:72px 0 64px;}
+  .image-band .container{padding:64px 0 56px;}
+}
+
+/* 모바일 브라우저 주소창 이슈 완화(svh 지원 브라우저에서 더 정확) */
+.hero{
+  min-height:clamp(480px, 92vh, 880px);
+  min-height:clamp(480px, 92svh, 880px);
+}
+@media (max-width:920px){
+  .menu.open{
+    left:4vw; right:4vw;   /* 풀폭에 가깝게 */
+    top:64px;
+  }
+  .menu a{padding:12px 14px;} /* 터치 영역 확대 */
+}
+#kakao-btn{
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  width:56px; height:56px;
+}
+
+/* 터치 디바이스에서는 툴팁 숨김(hover가 없으므로) */
+@media (hover:none){
+  .kakao-tooltip{display:none;}
+}
+@media (max-width:920px){
+  .best-grid{-webkit-overflow-scrolling: touch;}
+}
+
   </style>
 </head>
 
