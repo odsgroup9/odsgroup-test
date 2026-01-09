@@ -11,23 +11,26 @@
   <link rel="icon" href="logo.png" />
 
   <style>
-    /* ===== 밝은 톤 팔레트 ===== */
+    /* =========================================================
+       ODS Group — Spline + 이미지형(풀블리드) 레이아웃 템플릿
+       ========================================================= */
+
     :root{
-      --bg:#f9fbff;
-      --card:#ffffff;
-      --text:#0b1b34;
-      --muted:#667085;
+      --bg:#f7f5f0;
+      --paper:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --line:rgba(17,24,39,.10);
+      --shadow:0 12px 30px rgba(17,24,39,.08);
       --brand:#0a84ff;
-      --accent:#35b0ff;
-      --border:rgba(0,0,0,.08);
-      --shadow:0 8px 24px rgba(0,0,0,.08);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;color:var(--text);
-      background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
       font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Noto Sans KR,Apple SD Gothic Neo,'Malgun Gothic','Helvetica Neue',Arial,sans-serif;
       line-height:1.6;
     }
@@ -37,349 +40,230 @@
     /* ===== 헤더 ===== */
     header{
       position:sticky;top:0;z-index:30;
-      background:#fff;border-bottom:1px solid var(--border);backdrop-filter:saturate(1.2) blur(8px);
+      background:rgba(247,245,240,.88);
+      backdrop-filter:saturate(1.2) blur(10px);
+      border-bottom:1px solid var(--line);
     }
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#000}
-    .brand-logo-img{width:60px;height:60px;object-fit:contain;border-radius:8px;background:transparent;box-shadow:0 2px 6px rgba(0,0,0,.06)}
-    .menu{display:flex;gap:20px;align-items:center}
-    .menu a{padding:8px 10px;border-radius:10px;color:#344054;font-weight:500}
-    .menu a:hover{color:#000;background:rgba(0,0,0,.04)}
-    .cta{padding:10px 14px;border-radius:12px;background:linear-gradient(120deg,var(--brand),var(--accent));color:#fff;font-weight:600;box-shadow:0 4px 12px rgba(10,132,255,.25)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand-logo-img{width:44px;height:44px;object-fit:contain;border-radius:10px;background:transparent}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{padding:8px 10px;border-radius:10px;color:rgba(17,24,39,.78);font-weight:600}
+    .menu a:hover{color:#000;background:rgba(17,24,39,.06)}
+    .cta{padding:10px 14px;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;box-shadow:0 6px 18px rgba(10,132,255,.25)}
+
     @media(max-width:920px){
       .menu{display:none}
-      .menu.open{display:flex;flex-direction:column;gap:8px;position:absolute;top:58px;right:4vw;background:#fff;padding:12px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
-      .hamburger{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.9)}
+      .menu.open{display:flex;flex-direction:column;gap:8px;position:absolute;top:60px;right:4vw;background:var(--paper);padding:12px;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+      .hamburger{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.8)}
     }
     @media(min-width:921px){.hamburger{display:none}}
 
-    /* 헤더-히어로 사이 얇은 구분선 */
-    header::after{
-      content:"";display:block;width:100%;height:2px;margin:0;
-      background:linear-gradient(to right,#eef2f6,#e3e8ef,#eef2f6);
-    }
+    /* ===== 섹션 공통 ===== */
+    section{padding:84px 0}
+    .kicker{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:rgba(17,24,39,.55)}
+    h1,h2,h3{letter-spacing:-.02em}
+    .section-title{font-size:34px;line-height:1.15;margin:0 0 10px}
+    .section-desc{margin:0;color:var(--muted)}
 
-    /* ===== 이미지 히어로 + 점 네비 + 화살표 ===== */
-    .slider{position:relative;width:100%;height:clamp(380px,56vw,560px);overflow:hidden;background:#fff}
-    .slides{display:flex;width:100%;height:100%;transition:transform .6s ease}
-    .slide{min-width:100%;height:100%;position:relative}
-    .slide::before{
-      content:"";position:absolute;inset:0;
-      background-size:contain; background-repeat:no-repeat; background-position:center;
-      background-color:#fff;
-    }
-    .slide.s1::before{background-image:url('hero-1.jpg')}
-    .slide.s2::before{background-image:url('hero-2.jpg')}
-    .slide.s3::before{background-image:url('hero-3.jpg')}
-
-    .dots{position:absolute;left:0;right:0;bottom:16px;display:flex;gap:10px;justify-content:center;z-index:3}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.28);cursor:pointer}
-    .dot.active{background:#0b1b34;width:24px;border-radius:999px;transition:width .3s ease}
-
-    .arrow{
-      position:absolute;top:50%;transform:translateY(-50%);
-      width:48px;height:48px;border:1px solid var(--border);
-      background:rgba(255,255,255,.85);color:#333;font-size:28px;font-weight:700;
-      cursor:pointer;display:grid;place-items:center;transition:all .25s ease;z-index:4;box-shadow:0 2px 10px rgba(0,0,0,.08);
-    }
-    .arrow:hover{background:#0a84ff;color:#fff;border-color:#0a84ff;transform:translateY(-50%) scale(1.08)}
-    .arrow.prev{left:0;border-radius:0 50% 50% 0}
-    .arrow.next{right:0;border-radius:50% 0 0 50%}
-    @media (max-width:768px){.arrow{width:40px;height:40px;font-size:24px}}
-
-    /* ===== 섹션 공통 + 구분 디자인 ===== */
-    section{ position:relative; padding:72px 0; }
-    .section-title{
-      font-size:28px;margin:0 0 8px;color:var(--text);
-      padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.06);
+    /* ===== HERO: Spline 3D + 오버레이 ===== */
+    .hero{
+      padding:0;
       position:relative;
+      min-height:clamp(560px, 92vh, 880px);
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:#0b0f19;
     }
-    .section-title::after{
-      content:""; position:absolute; left:0; bottom:-1px; width:56px; height:2px;
-      background:linear-gradient(90deg,var(--brand),var(--accent));
+    .hero-media{position:absolute;inset:0}
+    .hero-spline{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      border:0;
     }
-    .section-desc{color:var(--muted);margin:16px 0 28px}
+    .hero-scrim{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(11,15,25,.35) 0%, rgba(11,15,25,.55) 55%, rgba(11,15,25,.80) 100%);
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      padding:96px 0 86px;
+      color:#fff;
+    }
+    .hero h1{
+      margin:10px 0 14px;
+      font-size:clamp(38px, 5.3vw, 76px);
+      line-height:1.02;
+    }
+    .hero p{margin:0;color:rgba(255,255,255,.82);max-width:56ch;font-size:clamp(15px,1.5vw,18px)}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;font-weight:800;border:1px solid rgba(255,255,255,.16)}
+    .btn.primary{background:#fff;color:#111827;border-color:#fff}
+    .btn.primary:hover{filter:brightness(.96)}
+    .btn.ghost{background:rgba(255,255,255,.06);color:#fff}
+    .btn.ghost:hover{background:rgba(255,255,255,.10)}
 
-    /* 섹션 사이 상단 그라데이션 */
-    section + section::before{
-      content:""; position:absolute; top:0; left:0; right:0; height:56px;
-      background:linear-gradient(180deg,#eef2f6,rgba(238,242,246,0));
-      pointer-events:none; opacity:.7;
+    /* ===== 풀블리드 이미지 밴드 ===== */
+    .image-band{
+      padding:0;
+      position:relative;
+      min-height:clamp(420px, 58vw, 560px);
+      background:#111;
+      overflow:hidden;
     }
+    .image-band::before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:var(--bgimg);
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05);
+      transform:scale(1.02);
+    }
+    .image-band::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.68) 100%);
+    }
+    .image-band .container{
+      position:relative;z-index:1;
+      padding:84px 0 76px;
+      color:#fff;
+    }
+    .image-band h2{
+      margin:0 0 10px;
+      font-size:clamp(30px,4.2vw,56px);
+      line-height:1.05;
+    }
+    .image-band p{margin:0;max-width:60ch;color:rgba(255,255,255,.82)}
 
-    .divider{
-      height:1px; margin:36px 0;
-      background:linear-gradient(90deg, rgba(2,6,23,.06), rgba(2,6,23,.16), rgba(2,6,23,.06));
-      border-radius:999px;
-    }
+    /* ===== 카드 / 그리드 ===== */
+    .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+    @media(max-width:920px){.grid-2{grid-template-columns:1fr}}
 
-    .stripe{
-      background:linear-gradient(180deg,#ffffff 0%, #f6f9ff 100%);
-      border-top:1px solid var(--border);
-      border-bottom:1px solid var(--border);
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
+    .card-pad{padding:20px}
 
-    /* 카드류 공통 그림자/보더 */
-    .card, .info .block, .service-card, .best-card, .theme-strip, .logo-strip {
-      box-shadow:0 8px 24px rgba(0,0,0,.06);
-      border:1px solid var(--border);
-    }
+    .mini-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media(max-width:920px){.mini-gallery{grid-template-columns:repeat(2,1fr)}}
+    .mini-gallery img{width:100%;height:130px;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
 
-    /* ===== 테마 선택 ===== */
-    .theme-strip{background:#fff;color:#0b1b34;border-radius:16px;padding:28px 24px 12px;margin-top:8px}
-    .theme-head{font-weight:800;font-size:18px;margin:0 0 14px;letter-spacing:-.2px}
-    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-    .theme-item{
-      display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;
-      background:#fff;transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      color:inherit;text-decoration:none;border:1px solid var(--border);
-    }
-    .theme-item:hover,.theme-item:focus-visible{
-      transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.06);border-color:#cfe8ff;outline:none;
-    }
-    .theme-ico{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#eef5ff;color:var(--brand);font-size:18px}
-    .theme-label{font-weight:700}
-    .theme-sub{font-size:12px;color:#667085;line-height:1.2}
-    .theme-text{display:grid;gap:2px}
-
-    /* ===== 로고 스트립 ===== */
+    /* ===== 파트너 로고 스트립 ===== */
     .logo-strip{
-      position:relative;overflow:hidden;border-radius:14px;background:#fff;
-      padding:12px 0;margin-top:8px;margin-bottom:4px;
+      position:relative;overflow:hidden;border-radius:16px;background:var(--paper);
+      padding:12px 0;margin-top:16px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
     }
-    .logo-strip::before,.logo-strip::after{
-      content:"";position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none;
-    }
-    .logo-strip::before{left:0;background:linear-gradient(to right,#fff,rgba(255,255,255,0))}
-    .logo-strip::after{right:0;background:linear-gradient(to left,#fff,rgba(255,255,255,0))}
+    .logo-strip::before,.logo-strip::after{content:"";position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none}
+    .logo-strip::before{left:0;background:linear-gradient(to right,var(--paper),rgba(255,255,255,0))}
+    .logo-strip::after{right:0;background:linear-gradient(to left,var(--paper),rgba(255,255,255,0))}
     .logo-track{display:flex;gap:28px;align-items:center;width:max-content;animation:scroll-logos 60s linear infinite}
     .logo-item{height:56px;min-width:160px;display:grid;place-items:center;padding:0 8px}
-    .logo-item img{max-height:48px;max-width:160px;object-fit:contain}
+    .logo-item img{max-height:46px;max-width:160px;object-fit:contain}
     @keyframes scroll-logos{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* ===== 베스트 프로그램 ===== */
-    .best{padding:72px 0}
-    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-    .tab{
-      padding:8px 12px;border-radius:999px;border:1px solid var(--border);
-      background:#fff;color:#0b1b34;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);
+    /* ===== 카테고리 카드 ===== */
+    .category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px}
+    .category-card{
+      display:flex;flex-direction:column;
+      background:var(--paper);
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .tab.active{background:#0b1b34;color:#fff;border-color:#0b1b34}
-    .best-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .category-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(17,24,39,.12)}
+    .cat-thumb{width:100%;height:180px;object-fit:contain;background:#f2f3f6;padding:6px}
+    .cat-body{padding:16px}
+    .cat-title{font-size:18px;font-weight:900;margin:0 0 4px}
+    .cat-sub{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+
+    /* ===== 베스트 프로그램 ===== */
+    .best-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
     @media(max-width:920px){
-      .best-grid{
-        display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,75%);
-        overflow-x:auto;gap:12px;padding-bottom:6px;scroll-snap-type:x mandatory;
-      }
+      .best-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,78%);overflow-x:auto;gap:12px;padding-bottom:6px;scroll-snap-type:x mandatory}
       .best-card{scroll-snap-align:start}
     }
-    .best-card{background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-    .best-thumb{width:100%;height:160px;object-fit:cover;display:block;background:#e9eef7}
-    .best-body{padding:14px 16px;display:grid;gap:8px}
-    .best-title{font-size:17px;margin:0;color:#0b1b34}
-    .best-meta{display:flex;gap:8px;flex-wrap:wrap}
-    .badge-sm{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border);color:#475467;background:#f8fafc}
-    .best-list{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
-    .best-cta{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:12px 16px;border-top:1px solid var(--border);
+    .best-card{background:var(--paper);border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .best-thumb{width:100%;height:170px;object-fit:cover;display:block}
+    .best-body{padding:14px 16px}
+    .best-title{font-size:18px;margin:0 0 8px}
+    .badge-sm{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:#374151;background:#f8fafc}
+    .best-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+    .best-list{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+
+    /* ===== Contact / Footer ===== */
+    .contact-full{padding:86px 0;background:linear-gradient(180deg, rgba(17,24,39,.04) 0%, rgba(17,24,39,.00) 70%)}
+    .contact-inner{width:min(1100px,92vw);margin:0 auto;background:var(--paper);padding:30px;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .contact-grid{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;font-size:15px}
+    .contact-grid div:nth-child(odd){font-weight:900}
+    .contact-grid div:nth-child(even){color:var(--muted)}
+
+    footer{padding:40px 0 64px;color:var(--muted);border-top:1px solid var(--line);background:rgba(255,255,255,.35)}
+    .footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+    /* ===== 카카오톡 상담 버튼 ===== */
+    #kakao-btn{
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #00c73c;
+      color: #fff;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      cursor: pointer;
+      z-index: 2000;
     }
-    .best-cta a{font-weight:700;color:#0a84ff}
+    #kakao-btn:hover{transform: translateY(-2px);box-shadow: 0 10px 24px rgba(0,0,0,0.3);}
 
-    /* ===== 서비스 ===== */
-    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:20px}
-    .service-card{
-      background:#fff;border-radius:16px;overflow:hidden;
-      transition:transform .2s ease,box-shadow .2s ease;
-      border:1px solid var(--border);box-shadow:var(--shadow);
+    .kakao-tooltip {
+      position: absolute;
+      bottom: 75px;
+      left: 50px;
+      transform: translateX(-100%);
+      background: #333;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 1;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .service-card img{width:100%;height:180px;object-fit:cover;display:block}
-    .service-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-    .caption{
-      padding:12px 14px;font-size:15px;color:#0b1b34;
-      background:#fff;border-top:1px solid var(--border);
+    .kakao-tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 26px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
     }
 
-    /* ===== 연락처 ===== */
-    .info{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .info .block{
-      background:#fff;border-radius:16px;padding:18px;
-      box-shadow:var(--shadow);border:1px solid var(--border);
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important;animation:none !important;transition:none !important}
     }
-    .dl{display:grid;grid-template-columns:120px 1fr;gap:6px 14px;color:var(--muted)}
-    footer{padding:40px 0 60px;color:#667085;border-top:1px solid var(--border);background:#fff}
-
-    .btn{
-      padding:12px 16px;border:1px solid var(--border);border-radius:12px;
-      font-weight:600;background:linear-gradient(120deg,var(--brand),var(--accent));
-      color:#fff;box-shadow:0 4px 12px rgba(10,132,255,.25);
-    }
-    .btn:hover{filter:brightness(0.96)}
-
-    @media (min-width: 921px) {
-      .best-grid > *:not(:last-child) .best-cta,
-      .service-grid > *:not(:last-child) .caption {
-        border-bottom: 1px dashed rgba(0,0,0,.06);
-      }
-    }
-/* ===== 이미지형 카테고리 카드 ===== */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.category-card {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 14px rgba(0,0,0,.06);
-  transition: transform .2s ease, box-shadow .2s ease;
-  text-decoration: none;
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0,0,0,.12);
-}
-
-.cat-thumb {
-  width: 100%;
-  height: 180px;         /* 기존 140px → 180px로 크게 */
-  object-fit: contain;   /* 이미지 전체 보임 */
-  background: #f2f5fb;   /* 밝은 배경 */
-  padding: 4px;          /* 최소 여백만 유지 */
-}
-
-.cat-body {
-  padding: 16px;
-}
-
-.cat-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 4px;
-  color: #0b1b34;
-}
-
-.cat-sub {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-.contact-full {
-  width: 100%;
-  background: #f3f6fb;
-  padding: 50px 0;
-  margin-top: 40px;
-}
-
-.contact-inner {
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 10px 20px;
-  font-size: 15px;
-}
-
-.contact-grid div:nth-child(odd) {
-  font-weight: 700;
-  color: var(--text);
-}
-
-.contact-grid div:nth-child(even) {
-  color: var(--muted);
-}
-
-/* ===== 카카오톡 상담 버튼 ===== */
-#kakao-btn {
-  position: fixed;
-  right: 140px;   /* ← 기존 24px → 120px로 변경 */
-  bottom: 24px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #00c73c;
-  color: #fff;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  cursor: pointer;
-  z-index: 2000;
-}
-
-#kakao-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.3);
-}
-
-/* ===== 카카오톡 버튼 툴팁 (항상 표시 버전) ===== */
-#kakao-btn {
-  position: fixed;
-  right: 140px;
-  bottom: 24px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #00c73c;
-  color: #fff;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  cursor: pointer;
-  z-index: 2000;
-}
-
-/* 툴팁 (항상 표시) */
-.kakao-tooltip {
-  position: absolute;
-  bottom: 75px;
-  left: 50px;  /* 기존 -10px에서 -40px로 살짝 이동 */
-  transform: translateX(-100%);
-  background: #333;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 1;
-  pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-
-/* 말풍선 꼬리 */
-.kakao-tooltip::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 26px;   /* 기존보다 6px 정도 더 왼쪽으로 조정 */
-  border-width: 6px;
-  border-style: solid;
-  border-color: #333 transparent transparent transparent;
-}
-
   </style>
 </head>
 
 <body>
-  <!-- 헤더 -->
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="홈으로">
@@ -393,43 +277,86 @@
           <a href="#themes">테마</a>
           <a href="#best">베스트</a>
           <a href="#contact" class="cta">문의</a>
-          
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- 히어로 -->
-  <section id="top" class="slider" aria-label="주요 섹션 슬라이드" aria-live="polite">
-    <div class="slides">
-      <div class="slide s1" aria-label="슬라이드 1"></div>
-      <div class="slide s2" aria-label="슬라이드 2"></div>
-      <div class="slide s3" aria-label="슬라이드 3"></div>
+  <section id="top" class="hero" aria-label="메인 소개">
+    <div class="hero-media" aria-hidden="true">
+      <iframe
+        class="hero-spline"
+        src="https://my.spline.design/nexbotrobotcharacterconcept-BcuN0NzqULqwKMIpMRh6Nuvz/"
+        frameborder="0"
+        loading="eager"
+        title="Spline 3D"
+        allow="autoplay; fullscreen; xr-spatial-tracking"
+      ></iframe>
+      <div class="hero-scrim"></div>
     </div>
-    <button class="arrow prev" aria-label="이전 슬라이드">&#10094;</button>
-    <button class="arrow next" aria-label="다음 슬라이드">&#10095;</button>
-    <div class="dots" role="tablist" aria-label="슬라이드 선택">
-      <div class="dot" role="tab" aria-label="1번 슬라이드"></div>
-      <div class="dot" role="tab" aria-label="2번 슬라이드"></div>
-      <div class="dot" role="tab" aria-label="3번 슬라이드"></div>
+
+    <div class="container hero-content">
+      <div class="kicker">AI · HRD · HRM Consulting</div>
+      <h1>AI로 설계하는<br>실행형 교육·조직 솔루션</h1>
+      <p>현업에서 바로 작동하는 커리큘럼과, 교육 이후까지 이어지는 적용·정착 프로세스를 제공합니다.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#contact">교육 문의하기</a>
+        <a class="btn ghost" href="#best">대표 과정 보기</a>
+      </div>
     </div>
   </section>
 
-  <!-- 함께한 곳 (먼저 배치) -->
-  <section id="partners">
+  <section aria-label="오디에스그룹 소개">
+    <div class="container grid-2">
+      <div>
+        <div class="kicker">Mundane made magic</div>
+        <h2 class="section-title">평범한 업무를<br>성과로 바꾸는 교육</h2>
+        <p class="section-desc">
+          교육은 ‘좋은 시간’으로 끝나면 안 됩니다. 오디에스그룹은 업무 흐름과 도구 환경에 맞춰
+          실무 적용이 가능한 결과물(템플릿·가이드·프로세스)을 남기는 방식으로 설계합니다.
+        </p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="badge-sm">직무별 AI 실무 적용</span>
+          <span class="badge-sm">문제해결·기획</span>
+          <span class="badge-sm">조직문화·리더십</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-pad">
+          <div class="kicker">Mini gallery</div>
+          <div class="mini-gallery" style="margin-top:12px">
+            <img src="best-03.jpg" alt="AI 업무 혁신 예시" loading="lazy">
+            <img src="best-04.jpg" alt="문제해결 및 기획 예시" loading="lazy">
+            <img src="best-05.jpg" alt="코칭·소통 예시" loading="lazy">
+            <img src="best-01.jpg" alt="조직문화형성 예시" loading="lazy">
+            <img src="best-02.jpg" alt="리더십 부스트 예시" loading="lazy">
+            <img src="best-08.jpg" alt="팀빌딩 예시" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="image-band" style="--bgimg:url('best-03.jpg')" aria-label="AI 업무 혁신">
     <div class="container">
+      <h2>AI 업무 혁신이<br>현업에서 돌아가게</h2>
+      <p>Copilot·ChatGPT·NotebookLM 등 도구는 ‘사용법’보다 ‘업무 시스템’에 들어가야 합니다. 직무 시나리오 기반으로 적용 흐름을 설계합니다.</p>
+    </div>
+  </section>
+
+  <section id="partners" aria-label="함께하는 기업">
+    <div class="container">
+      <div class="kicker">Partners</div>
       <h2 class="section-title">함께하는 기업</h2>
       <p class="section-desc">오디에스그룹은 더 나은 가치를 제공하기 위해 노력합니다.</p>
-   <p style="margin-bottom:20px;">
-      <a href="partners.html" style="
-        display:inline-flex;align-items:center;gap:6px;
-        font-size:13px;padding:6px 12px;border-radius:999px;
-        border:1px solid rgba(0,0,0,.08);background:#ffffff;
-        color:#0a84ff;
-      ">
-        파트너사 전체보기 →
-      </a>
-    </p>
+
+      <p style="margin:14px 0 0;">
+        <a href="partners.html" class="btn" style="background:transparent;color:var(--brand);border-color:rgba(10,132,255,.35);padding:10px 12px;">
+          파트너사 전체보기 →
+        </a>
+      </p>
+
       <div class="logo-strip" aria-label="파트너 로고 무한 스크롤 목록">
         <div class="logo-track">
           <div class="logo-item"><img src="kyungshin%20logo.png" alt="Kyungshin"></div>
@@ -442,61 +369,7 @@
           <div class="logo-item"><img src="partner-08.png" alt="Partner 08"></div>
           <div class="logo-item"><img src="partner-09.png" alt="Partner 09"></div>
           <div class="logo-item"><img src="partner-10.png" alt="Partner 10"></div>
-<div class="logo-item"><img src="partner-11.png" alt="Partner 11"></div>
-<div class="logo-item"><img src="partner-12.png" alt="Partner 12"></div>
-<div class="logo-item"><img src="partner-13.png" alt="Partner 13"></div>
-<div class="logo-item"><img src="partner-14.png" alt="Partner 14"></div>
-<div class="logo-item"><img src="partner-15.png" alt="Partner 15"></div>
-<div class="logo-item"><img src="partner-16.png" alt="Partner 16"></div>
-<div class="logo-item"><img src="partner-17.png" alt="Partner 17"></div>
-<div class="logo-item"><img src="partner-18.png" alt="Partner 18"></div>
-<div class="logo-item"><img src="partner-19.png" alt="Partner 19"></div>
 
-<div class="logo-item"><img src="partner-20.png" alt="Partner 20"></div>
-<div class="logo-item"><img src="partner-21.png" alt="Partner 21"></div>
-<div class="logo-item"><img src="partner-22.png" alt="Partner 22"></div>
-<div class="logo-item"><img src="partner-23.png" alt="Partner 23"></div>
-<div class="logo-item"><img src="partner-24.png" alt="Partner 24"></div>
-<div class="logo-item"><img src="partner-25.png" alt="Partner 25"></div>
-<div class="logo-item"><img src="partner-26.png" alt="Partner 26"></div>
-<div class="logo-item"><img src="partner-27.png" alt="Partner 27"></div>
-<div class="logo-item"><img src="partner-28.png" alt="Partner 28"></div>
-<div class="logo-item"><img src="partner-29.png" alt="Partner 29"></div>
-<div class="logo-item"><img src="partner-30.png" alt="Partner 30"></div>
-
-
-<div class="logo-item"><img src="partner-31.png" alt="Partner 31"></div>
-<div class="logo-item"><img src="partner-32.png" alt="Partner 32"></div>
-<div class="logo-item"><img src="partner-33.png" alt="Partner 33"></div>
-<div class="logo-item"><img src="partner-34.png" alt="Partner 34"></div>
-<div class="logo-item"><img src="partner-35.png" alt="Partner 35"></div>
-<div class="logo-item"><img src="partner-36.png" alt="Partner 36"></div>
-<div class="logo-item"><img src="partner-37.png" alt="Partner 37"></div>
-<div class="logo-item"><img src="partner-38.png" alt="Partner 38"></div>
-<div class="logo-item"><img src="partner-39.png" alt="Partner 39"></div>
-<div class="logo-item"><img src="partner-40.png" alt="Partner 40"></div>
-
-<div class="logo-item"><img src="partner-41.png" alt="Partner 41"></div>
-<div class="logo-item"><img src="partner-42.png" alt="Partner 42"></div>
-<div class="logo-item"><img src="partner-43.png" alt="Partner 43"></div>
-<div class="logo-item"><img src="partner-44.png" alt="Partner 44"></div>
-<div class="logo-item"><img src="partner-45.png" alt="Partner 45"></div>
-<div class="logo-item"><img src="partner-46.png" alt="Partner 46"></div>
-<div class="logo-item"><img src="partner-47.png" alt="Partner 47"></div>
-<div class="logo-item"><img src="partner-48.png" alt="Partner 48"></div>
-<div class="logo-item"><img src="partner-49.png" alt="Partner 49"></div>
-<div class="logo-item"><img src="partner-50.png" alt="Partner 50"></div>
-
-<div class="logo-item"><img src="partner-51.png" alt="Partner 51"></div>
-<div class="logo-item"><img src="partner-52.png" alt="Partner 52"></div>
-<div class="logo-item"><img src="partner-53.png" alt="Partner 53"></div>
-<div class="logo-item"><img src="partner-54.png" alt="Partner 54"></div>
-<div class="logo-item"><img src="partner-55.png" alt="Partner 55"></div>
-
-
-
-
-          <!-- 반복 트랙 -->
           <div class="logo-item"><img src="kyungshin%20logo.png" alt="Kyungshin"></div>
           <div class="logo-item"><img src="SK%20logo.svg" alt="SK"></div>
           <div class="logo-item"><img src="Shinsegae%20I%20%26%20C.jpg" alt="Shinsegae I&C"></div>
@@ -507,119 +380,64 @@
           <div class="logo-item"><img src="partner-08.png" alt="Partner 08"></div>
           <div class="logo-item"><img src="partner-09.png" alt="Partner 09"></div>
           <div class="logo-item"><img src="partner-10.png" alt="Partner 10"></div>
-<div class="logo-item"><img src="partner-11.png" alt="Partner 11"></div>
-<div class="logo-item"><img src="partner-12.png" alt="Partner 12"></div>
-<div class="logo-item"><img src="partner-13.png" alt="Partner 13"></div>
-<div class="logo-item"><img src="partner-14.png" alt="Partner 14"></div>
-<div class="logo-item"><img src="partner-15.png" alt="Partner 15"></div>
-<div class="logo-item"><img src="partner-16.png" alt="Partner 16"></div>
-<div class="logo-item"><img src="partner-17.png" alt="Partner 17"></div>
-<div class="logo-item"><img src="partner-18.png" alt="Partner 18"></div>
-<div class="logo-item"><img src="partner-19.png" alt="Partner 19"></div>
-
-<div class="logo-item"><img src="partner-20.png" alt="Partner 20"></div>
-<div class="logo-item"><img src="partner-21.png" alt="Partner 21"></div>
-<div class="logo-item"><img src="partner-22.png" alt="Partner 22"></div>
-<div class="logo-item"><img src="partner-23.png" alt="Partner 23"></div>
-<div class="logo-item"><img src="partner-24.png" alt="Partner 24"></div>
-<div class="logo-item"><img src="partner-25.png" alt="Partner 25"></div>
-<div class="logo-item"><img src="partner-26.png" alt="Partner 26"></div>
-<div class="logo-item"><img src="partner-27.png" alt="Partner 27"></div>
-<div class="logo-item"><img src="partner-28.png" alt="Partner 28"></div>
-<div class="logo-item"><img src="partner-29.png" alt="Partner 29"></div>
-<div class="logo-item"><img src="partner-30.png" alt="Partner 30"></div>
-
-
-<div class="logo-item"><img src="partner-31.png" alt="Partner 31"></div>
-<div class="logo-item"><img src="partner-32.png" alt="Partner 32"></div>
-<div class="logo-item"><img src="partner-33.png" alt="Partner 33"></div>
-<div class="logo-item"><img src="partner-34.png" alt="Partner 34"></div>
-<div class="logo-item"><img src="partner-35.png" alt="Partner 35"></div>
-<div class="logo-item"><img src="partner-36.png" alt="Partner 36"></div>
-<div class="logo-item"><img src="partner-37.png" alt="Partner 37"></div>
-<div class="logo-item"><img src="partner-38.png" alt="Partner 38"></div>
-<div class="logo-item"><img src="partner-39.png" alt="Partner 39"></div>
-<div class="logo-item"><img src="partner-40.png" alt="Partner 40"></div>
-
-<div class="logo-item"><img src="partner-41.png" alt="Partner 41"></div>
-<div class="logo-item"><img src="partner-42.png" alt="Partner 42"></div>
-<div class="logo-item"><img src="partner-43.png" alt="Partner 43"></div>
-<div class="logo-item"><img src="partner-44.png" alt="Partner 44"></div>
-<div class="logo-item"><img src="partner-45.png" alt="Partner 45"></div>
-<div class="logo-item"><img src="partner-46.png" alt="Partner 46"></div>
-<div class="logo-item"><img src="partner-47.png" alt="Partner 47"></div>
-<div class="logo-item"><img src="partner-48.png" alt="Partner 48"></div>
-<div class="logo-item"><img src="partner-49.png" alt="Partner 49"></div>
-<div class="logo-item"><img src="partner-50.png" alt="Partner 50"></div>
-
-<div class="logo-item"><img src="partner-51.png" alt="Partner 51"></div>
-<div class="logo-item"><img src="partner-52.png" alt="Partner 52"></div>
-<div class="logo-item"><img src="partner-53.png" alt="Partner 53"></div>
-<div class="logo-item"><img src="partner-54.png" alt="Partner 54"></div>
-<div class="logo-item"><img src="partner-55.png" alt="Partner 55"></div>
-
-
-
-
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 어떤 교육을 찾고 계신가요? (이미지 카드 4개 버전) -->
-<section id="themes" class="stripe">
-  <div class="container theme-strip" aria-label="교육 테마 선택">
-    <h2 class="section-title">어떤 과정을 찾고 계신가요?</h2>
-
-    <div class="category-grid">
-      <!-- 1. AI & AX -->
-      <a class="category-card" href="ai-ax.html">
-        <img src="cat-ai.png" class="cat-thumb" alt="AI & AX">
-        <div class="cat-body">
-          <h3 class="cat-title">AI &amp; AX</h3>
-          <p class="cat-sub">AI활용기반 자동화/</br>컨텐츠제작/Agent기획</p>
-        </div>
-      </a>
-
-      <!-- 2. 성과관리 -->
-      <a class="category-card" href="performance.html">
-        <img src="cat-performance.png" class="cat-thumb" alt="성과관리">
-        <div class="cat-body">
-          <h3 class="cat-title">직무/업무</h3>
-          <p class="cat-sub">업무효율화/사내강사역량향상/</br>마케팅활용</p>
-        </div>
-      </a>
-
-      <!-- 3. 리더십 -->
-      <a class="category-card" href="leadership.html">
-        <img src="cat-leadership.png" class="cat-thumb" alt="리더십">
-        <div class="cat-body">
-          <h3 class="cat-title">리더십</h3>
-          <p class="cat-sub">소통/동기부여/역할과 책임/유형진단</p>
-        </div>
-      </a>
-
-      <!-- 4. HRM -->
-      <a class="category-card" href="hrm.html">
-        <img src="cat-hrm.png" class="cat-thumb" alt="HRM">
-        <div class="cat-body">
-          <h3 class="cat-title">HRM</h3>
-          <p class="cat-sub">입문교육/리텐션/평가제도운영</p>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="container"><div class="divider"></div></div>
-</section>
-
-  <!-- 주요 프로그램 -->
-  <section id="best" class="best stripe">
+  <section class="image-band" style="--bgimg:url('best-01.jpg')" aria-label="조직문화">
     <div class="container">
+      <h2>조직문화는<br>행동으로 설계됩니다</h2>
+      <p>워크숍 도구(딕싯·스트림스·비전시티 등)를 활용해, 존중·칭찬·신뢰가 실제 행동으로 나타나게 만드는 경험 설계를 제공합니다.</p>
+    </div>
+  </section>
+
+  <section id="themes" aria-label="교육 테마 선택">
+    <div class="container">
+      <div class="kicker">Programs</div>
+      <h2 class="section-title">어떤 과정을 찾고 계신가요?</h2>
+
+      <div class="category-grid">
+        <a class="category-card" href="ai-ax.html">
+          <img src="cat-ai.png" class="cat-thumb" alt="AI & AX">
+          <div class="cat-body">
+            <h3 class="cat-title">AI &amp; AX</h3>
+            <p class="cat-sub">AI활용기반 자동화/콘텐츠제작/Agent기획</p>
+          </div>
+        </a>
+
+        <a class="category-card" href="performance.html">
+          <img src="cat-performance.png" class="cat-thumb" alt="직무/업무">
+          <div class="cat-body">
+            <h3 class="cat-title">직무/업무</h3>
+            <p class="cat-sub">업무효율화/사내강사역량향상/마케팅활용</p>
+          </div>
+        </a>
+
+        <a class="category-card" href="leadership.html">
+          <img src="cat-leadership.png" class="cat-thumb" alt="리더십">
+          <div class="cat-body">
+            <h3 class="cat-title">리더십</h3>
+            <p class="cat-sub">소통/동기부여/역할과 책임/유형진단</p>
+          </div>
+        </a>
+
+        <a class="category-card" href="hrm.html">
+          <img src="cat-hrm.png" class="cat-thumb" alt="HRM">
+          <div class="cat-body">
+            <h3 class="cat-title">HRM</h3>
+            <p class="cat-sub">입문교육/리텐션/평가제도운영</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="best" aria-label="인기 교육과정">
+    <div class="container">
+      <div class="kicker">Best</div>
       <h2 class="section-title">2026년 인기 교육과정</h2>
-      <p class="section-desc">최근 기업 및 기관에서 문의가 많은 대표 과정들을 소개합니다.
- 
+      <p class="section-desc">최근 기업 및 기관에서 문의가 많은 대표 과정들을 소개합니다.</p>
 
       <div class="best-grid">
         <article class="best-card">
@@ -633,7 +451,6 @@
               <li>직장생활의 즐거움</li>
             </ul>
           </div>
-      
         </article>
 
         <article class="best-card">
@@ -647,7 +464,6 @@
               <li>리더의 실행력 루틴</li>
             </ul>
           </div>
-     
         </article>
 
         <article class="best-card">
@@ -661,10 +477,9 @@
               <li>정책/보안 가이드라인</li>
             </ul>
           </div>
-
         </article>
 
-   <article class="best-card">
+        <article class="best-card">
           <img class="best-thumb" src="best-04.jpg" alt="문제해결 및 기획" loading="lazy">
           <div class="best-body">
             <h3 class="best-title">문제해결 및 기획</h3>
@@ -675,7 +490,6 @@
               <li>기획서 작성</li>
             </ul>
           </div>
-      
         </article>
 
         <article class="best-card">
@@ -689,154 +503,61 @@
               <li>소통이 갖는 딜레마와 해결방법</li>
             </ul>
           </div>
-     
-        </article>
-
-        <article class="best-card">
-          <img class="best-thumb" src="best-06.jpg" alt="성과관리 실전 과정" loading="lazy">
-          <div class="best-body">
-            <h3 class="best-title">성과관리 실전 과정</h3>
-            <div class="best-meta"><span class="badge-sm">1~3일과정</span><span class="badge-sm">관리자·실무 성과</span></div>
-            <ul class="best-list">
-              <li>목표 설정·KPI 수립 방법 실습</li>
-              <li>팀원 성과 리뷰·피드백 대화법</li>
-              <li>데이터 기반 성과관리 루틴 구축</li>
-            </ul>
-          </div>
-
-        </article>
-   <article class="best-card">
-          <img class="best-thumb" src="best-07.jpg" alt="직무역량 개발 워크숍" loading="lazy">
-          <div class="best-body">
-            <h3 class="best-title">직무역량개발</h3>
-            <div class="best-meta"><span class="badge-sm">1~3일 과정</span><span class="badge-sm">핵심역량</span><span class="badge-sm">업무 설계</span></div>
-            <ul class="best-list">
-              <li>직무 분석 및 핵심역량 도출</li>
-              <li>강점 기반 역할 재정의</li>
-              <li>성장형 업무 설계 실습</li>
-            </ul>
-          </div>
-      
         </article>
 
         <article class="best-card">
           <img class="best-thumb" src="best-08.jpg" alt="팀빌딩 & 협업 활성화 프로그램" loading="lazy">
           <div class="best-body">
-            <h3 class="best-title">팀빌딩 & 협업 활성화 프로그램</h3>
+            <h3 class="best-title">팀빌딩 & 협업 활성화</h3>
             <div class="best-meta"><span class="badge-sm">1~3일 과정</span><span class="badge-sm">갈등해결</span><span class="badge-sm">신뢰구축</span></div>
             <ul class="best-list">
               <li>실습 중심 협업 워크숍</li>
-              <li>조직 내부에서 필요한 신뢰 안전감 구축</li>
-              <li>갈등 예방 & 해결 커뮤니케이션 훈련</li>
+              <li>심리적 안전감 구축</li>
+              <li>갈등 예방 & 해결 커뮤니케이션</li>
             </ul>
           </div>
-     
         </article>
-
-        <article class="best-card">
-          <img class="best-thumb" src="best-09.jpg" alt="AI 업무 혁신 실전" loading="lazy">
-          <div class="best-body">
-            <h3 class="best-title">AI 실습과정</h3>
-            <div class="best-meta"><span class="badge-sm">1~3일 · 실습</span><span class="badge-sm">AI·자동화</span></div>
-            <ul class="best-list">
-              <li>퇴근이 빨라지는 AI툴 실습</li>
-              <li>AI업무혁신화</li>
-              <li>AI리터러시</li>
-            </ul>
-          </div>
-
-        </article>
-
       </div>
     </div>
   </section>
 
-
-  <!-- 연락처 -->
-  <section id="contact" class="contact-full">
-  <div class="contact-inner">
-    <h2 class="section-title">Contact us</h2>
-
-    <div class="contact-grid">
-      <div>회사명</div><div>오디에스그룹</div>
-      <div>대표메일</div><div>odsgroup1@naver.com</div>
-      <div>대표번호</div><div>070-8778-9816</div>
-      <div>주소</div><div>04788 서울시 성동구 왕십리로 58, 비204(서울숲지식산업센터)</div>
+  <section id="contact" class="contact-full" aria-label="문의">
+    <div class="contact-inner">
+      <div class="kicker">Contact</div>
+      <h2 class="section-title">Contact us</h2>
+      <div class="contact-grid">
+        <div>회사명</div><div>오디에스그룹</div>
+        <div>대표메일</div><div>odsgroup1@naver.com</div>
+        <div>대표번호</div><div>070-8778-9816</div>
+        <div>주소</div><div>04788 서울시 성동구 왕십리로 58, 비204(서울숲지식산업센터)</div>
         <div></div><div>21984 인천시 연수구 송도과학로70, 2106호(송도AT지식산업센터)</div>
-      <div>사업자등록번호</div><div>584-86-00273</div>
-      <div>블로그</div><div><a href="https://blog.naver.com/odsgroup1" target="_blank">바로가기</a></div>
+        <div>사업자등록번호</div><div>584-86-00273</div>
+        <div>블로그</div><div><a href="https://blog.naver.com/odsgroup1" target="_blank" rel="noopener">바로가기</a></div>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;">
+    <div class="container footer-row">
       <small>© <span id="year"></span> ODS Group. All rights reserved.</small>
-      <div style="display:flex;gap:12px;align-items:center;">
-        <a href="#top" class="btn" style="padding:8px 12px;">맨 위로 ↑</a>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <a href="#top" class="btn" style="background:transparent;color:var(--text);border-color:var(--line);padding:10px 12px;">맨 위로 ↑</a>
       </div>
     </div>
   </footer>
 
+  <div id="kakao-btn" onclick="openKakaoChat()" aria-label="카카오톡 문의하기">
+    💬
+    <span class="kakao-tooltip">카카오톡 문의하기</span>
+  </div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 슬라이더
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelector('.slides');
-    const slideEls = Array.from(document.querySelectorAll('.slide'));
-    const dots = Array.from(document.querySelectorAll('.dot'));
-
-    let index = 0, autoTimer = null, autoplayMs = 5000;
-
-    function go(i){
-      index = (i + slideEls.length) % slideEls.length;
-      slides.style.transform = `translateX(${-100 * index}%)`;
-      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    function openKakaoChat() {
+      var kakaoUrl = "https://open.kakao.com/o/sdcISz3h";
+      window.open(kakaoUrl, "_blank", "noopener");
     }
-    function next(){ go(index+1); }
-    function prev(){ go(index-1); }
-    function startAuto(){ stopAuto(); autoTimer = setInterval(next, autoplayMs); }
-    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
-
-    go(0); startAuto();
-
-    dots.forEach((d,di)=>d.addEventListener('click', ()=>{ go(di); startAuto(); }));
-    document.querySelector('.arrow.next').addEventListener('click', ()=>{ next(); startAuto(); });
-    document.querySelector('.arrow.prev').addEventListener('click', ()=>{ prev(); startAuto(); });
-
-    slider.addEventListener('mouseenter', stopAuto);
-    slider.addEventListener('mouseleave', startAuto);
-    slider.addEventListener('focusin', stopAuto);
-    slider.addEventListener('focusout', startAuto);
-
-    window.addEventListener('keydown', e=>{
-      if(e.key==='ArrowRight'){ next(); startAuto(); }
-      if(e.key==='ArrowLeft'){ prev(); startAuto(); }
-    });
-
-    let sx=0,dx=0;
-    slider.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; dx=0; stopAuto(); }, {passive:true});
-    slider.addEventListener('touchmove', e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
-    slider.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx<0?next():prev(); } startAuto(); });
   </script>
-<!-- 카카오톡 상담 버튼 -->
-<div id="kakao-btn" onclick="openKakaoChat()">
-  💬
- <span class="kakao-tooltip">카카오톡 문의하기</span>
-</div>
-<script>
-  function openKakaoChat() {
-    // 여기에 너의 카카오톡 채팅 주소를 넣으면 돼!
-    var kakaoUrl = "https://open.kakao.com/o/sdcISz3h";
-
-    // 새 창(새 탭)으로 열기
-    window.open(kakaoUrl, "_blank");
-  }
-</script>
-
-
-
 </body>
 </html>
