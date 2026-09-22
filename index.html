@@ -1,580 +1,4128 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="ko">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>오디에스그룹 | HRD·HRM 컨설팅 및 기업 교육 전문 공식 홈페이지</title>
-    <meta name="description" content="변화하는 HR 트렌드의 해답, 오디에스그룹. 실무 중심 교육 시스템과 인사 솔루션을 제안합니다." />
-    <link rel="icon" href="logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Pretendard', 'sans-serif'] },
-                    colors: { brand: '#0a84ff' }
-                }
-            }
-        }
-    </script>
+  <title>ODS Group | AI · HRD · HRM Consulting</title>
 
-    <style>
-        body { font-family: 'Pretendard', sans-serif; word-break: keep-all; }
-        
-        /* 메쉬 그라데이션 배경 (화려함 추가) */
-        .bg-mesh {
-            background-color: #ffffff;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(10, 132, 255, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.03) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(10, 132, 255, 0.05) 0px, transparent 50%);
-        }
+  <meta
+    name="description"
+    content="AI·AX부터 리더십, 성과관리, 조직문화까지. ODS Group은 조직의 문제를 교육·컨설팅·실행으로 연결합니다."
+  >
 
-        /* 롤링 애니메이션 */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-scroll { display: flex; width: max-content; animation: scroll 35s linear infinite; }
+  <!-- Pretendard -->
+  <link
+    rel="stylesheet"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  >
 
-        /* 리뷰 카드는 마우스 호버 시 멈춤 */
-        .animate-scroll-slow { display: flex; width: max-content; animation: scroll 50s linear infinite; }
-        .animate-scroll-slow:hover { animation-play-state: paused; }
+  <style>
+    /* =========================================================
+       ODS GROUP V2
+       Single-file version
+    ========================================================= */
 
-        /* 스크롤 다운 애니메이션 */
-        @keyframes subtle-bounce {
-            0%, 100% { transform: translateY(0); opacity: 0.6; }
-            50% { transform: translateY(10px); opacity: 1; }
-        }
-        .animate-subtle-bounce { animation: subtle-bounce 2s infinite ease-in-out; }
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface-soft: #f0f2f6;
 
-        /* 탭 컨텐츠 페이드 효과 */
-        .tab-pane { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      --text: #101217;
+      --sub: #68707e;
+      --muted: #9aa1ad;
 
-        /* 가로 스크롤바 숨기기 */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      --primary: #4058e8;
+      --primary-dark: #2d3eb9;
+      --primary-light: #eef1ff;
 
-        /* 카카오톡 버튼 */
-        #kakao-btn {
-            position: fixed; right: 24px; bottom: 24px; width: 60px; height: 60px;
-            border-radius: 50%; background: #FEE500; color: #000000;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); cursor: pointer; z-index: 2000;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        #kakao-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
-    </style>
+      --border: #e4e7ec;
+
+      --dark: #111216;
+      --dark-2: #181a20;
+
+      --container: 1280px;
+
+      --radius: 24px;
+      --radius-lg: 36px;
+
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+
+
+    /* RESET */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+
+      background: var(--surface);
+      color: var(--text);
+
+      font-family:
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 145px 0;
+    }
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 145px;
+  height: 48px;
+
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 145px;
+  max-height: 48px;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 720px) {
+  .brand {
+    width: 120px;
+    height: 40px;
+  }
+
+  .brand-logo {
+    max-width: 120px;
+    max-height: 40px;
+  }
+}
+@media (max-width: 720px) {
+  .brand-logo {
+    width: 115px;
+  }
+}
+    /* =========================================================
+       COMMON
+    ========================================================= */
+
+    .section-label {
+      margin-bottom: 22px;
+
+      color: var(--primary);
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: .16em;
+    }
+
+    .section-label.light {
+      color: #8f9cff;
+    }
+
+    .section-title {
+      margin: 0;
+
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: 1.07;
+
+      letter-spacing: -.055em;
+    }
+
+    .section-title span {
+      color: #9298a3;
+      font-weight: 520;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      gap: 70px;
+
+      margin-bottom: 68px;
+    }
+
+    .section-head-copy {
+      max-width: 420px;
+
+      margin: 0;
+
+      color: var(--sub);
+
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      min-height: 54px;
+
+      padding: 0 23px;
+
+      border: 0;
+      border-radius: 12px;
+
+      font-size: 14px;
+      font-weight: 750;
+
+      cursor: pointer;
+
+      transition:
+        transform .25s var(--ease),
+        background .25s,
+        color .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .button-dark {
+      background: var(--text);
+      color: white;
+    }
+
+    .button-outline {
+      border: 1px solid var(--border);
+
+      background: white;
+      color: var(--text);
+    }
+
+    .button-white {
+      background: white;
+      color: var(--text);
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .header {
+      position: fixed;
+
+      z-index: 1000;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      transition:
+        background .3s,
+        border-color .3s,
+        backdrop-filter .3s;
+    }
+
+    .header.scrolled {
+      border-bottom:
+        1px solid rgba(20, 25, 35, .07);
+
+      background:
+        rgba(255, 255, 255, .86);
+
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      height: 78px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    
+
+    .brand-ods {
+      color: var(--primary);
+
+      font-size: 23px;
+      font-weight: 850;
+
+      letter-spacing: -.055em;
+    }
+
+    .brand-group {
+      font-size: 12px;
+      font-weight: 800;
+
+      letter-spacing: .11em;
+    }
+
+    .nav {
+      display: flex;
+
+      align-items: center;
+
+      gap: 37px;
+    }
+
+    .nav a {
+      color: #3a3e48;
+
+      font-size: 13px;
+      font-weight: 650;
+
+      transition: color .2s;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .header-button {
+      min-height: 44px;
+
+      padding: 0 18px;
+
+      font-size: 12px;
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 44px;
+      height: 44px;
+
+      padding: 0;
+
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+
+      width: 22px;
+      height: 1.5px;
+
+      margin: 6px auto;
+
+      background: var(--text);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+
+      overflow: hidden;
+
+      min-height: 880px;
+
+      padding:
+        180px 0 80px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #f7f8fb 100%
+        );
+    }
+
+    .hero-grid {
+      position: relative;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns:
+        1.05fr .95fr;
+
+      align-items: center;
+
+      gap: 80px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin-bottom: 28px;
+
+      padding: 8px 12px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.75);
+
+      color: var(--primary);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: .13em;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+
+      margin: 0;
+
+      font-size: clamp(57px, 6.3vw, 91px);
+      line-height: .99;
+
+      letter-spacing: -.068em;
+    }
+
+    .hero h1 span {
+      color: #9499a2;
+      font-weight: 510;
+    }
+
+    .hero-description {
+      max-width: 600px;
+
+      margin: 36px 0 0;
+
+      color: var(--sub);
+
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin-top: 40px;
+    }
+
+    .hero-meta {
+      display: flex;
+
+      gap: 30px;
+
+      margin-top: 48px;
+    }
+
+    .hero-meta-item {
+      padding-left: 14px;
+
+      border-left:
+        1px solid var(--border);
+    }
+
+    .hero-meta-item strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 12px;
+    }
+
+    .hero-meta-item span {
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+
+    /* HERO ART */
+
+    .hero-visual {
+      position: relative;
+
+      min-height: 580px;
+    }
+
+    .hero-panel {
+      position: absolute;
+
+      top: 32px;
+      right: 26px;
+
+      width: 82%;
+      height: 510px;
+
+      overflow: hidden;
+
+      border-radius:
+        150px 28px 28px 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #5068ef 0%,
+          #303c9e 52%,
+          #171b39 100%
+        );
+
+      box-shadow:
+        0 40px 90px
+        rgba(44, 58, 136, .22);
+    }
+
+    .hero-panel-grid {
+      position: absolute;
+
+      inset: 0;
+
+      opacity: .16;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.18) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.18) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        48px 48px;
+    }
+
+    .hero-orbit {
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      top: 35px;
+      right: -100px;
+
+      border:
+        1px solid rgba(255,255,255,.3);
+
+      border-radius: 50%;
+    }
+
+    .hero-orbit::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 55px;
+
+      border:
+        1px solid rgba(255,255,255,.25);
+
+      border-radius: 50%;
+    }
+
+    .hero-panel-copy {
+      position: absolute;
+
+      left: 36px;
+      bottom: 38px;
+
+      color: white;
+    }
+
+    .hero-panel-copy small {
+      display: block;
+
+      margin-bottom: 12px;
+
+      color: rgba(255,255,255,.55);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: .16em;
+    }
+
+    .hero-panel-copy strong {
+      display: block;
+
+      font-size: 38px;
+      line-height: 1;
+
+      letter-spacing: -.045em;
+    }
+
+    .floating-card {
+      position: absolute;
+
+      z-index: 5;
+
+      min-width: 195px;
+
+      padding: 20px;
+
+      border:
+        1px solid rgba(255,255,255,.7);
+
+      border-radius: 18px;
+
+      background:
+        rgba(255,255,255,.9);
+
+      box-shadow:
+        0 20px 50px rgba(23, 33, 83, .12);
+
+      backdrop-filter: blur(15px);
+
+      animation:
+        floating 6s ease-in-out infinite;
+    }
+
+    .floating-card small {
+      display: block;
+
+      margin-bottom: 17px;
+
+      color: var(--muted);
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: .13em;
+    }
+
+    .floating-card strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 21px;
+
+      letter-spacing: -.04em;
+    }
+
+    .floating-card span {
+      color: var(--sub);
+
+      font-size: 10px;
+    }
+
+    .floating-card.first {
+      top: 0;
+      left: 0;
+    }
+
+    .floating-card.second {
+      right: -4px;
+      bottom: 10px;
+
+      animation-delay: -2.5s;
+    }
+
+    .hero-yellow {
+      position: absolute;
+
+      left: 30px;
+      bottom: 55px;
+
+      width: 55px;
+      height: 55px;
+
+      border-radius: 50%;
+
+      background: #ffd463;
+
+      box-shadow:
+        0 10px 35px
+        rgba(255,212,99,.35);
+    }
+
+    .hero-glow {
+      position: absolute;
+
+      z-index: 0;
+
+      width: 570px;
+      height: 570px;
+
+      top: -220px;
+      right: -110px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(104, 126, 255, .2);
+
+      filter: blur(90px);
+    }
+
+
+    /* =========================================================
+       PARTNERS
+    ========================================================= */
+
+    .partners {
+      overflow: hidden;
+
+      padding: 55px 0;
+
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
+      background: white;
+    }
+
+    .partners-label {
+      margin-bottom: 34px;
+
+      color: var(--muted);
+
+      text-align: center;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: .17em;
+    }
+
+   .marquee {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+
+/* 왼쪽과 오른쪽을 자연스럽게 페이드 */
+.marquee::before,
+.marquee::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 5;
+
+  top: 0;
+
+  width: 110px;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+
+.marquee::before {
+  left: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      rgba(255,255,255,0) 100%
+    );
+}
+
+
+.marquee::after {
+  right: 0;
+
+  background:
+    linear-gradient(
+      270deg,
+      #ffffff 0%,
+      rgba(255,255,255,0) 100%
+    );
+}
+
+
+/* 55개 로고 전체를 움직이는 영역 */
+.marquee-track {
+  display: flex;
+
+  align-items: center;
+
+  width: max-content;
+
+  animation:
+    partnerMarquee 150s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* 로고 55개 한 세트 */
+.partner-set {
+  display: flex;
+
+  align-items: center;
+
+  gap: 55px;
+
+  padding-right: 55px;
+
+  flex-shrink: 0;
+}
+
+
+/* 개별 회사 로고 공간 */
+.partner-logo {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 165px;
+  height: 72px;
+
+  flex-shrink: 0;
+}
+
+
+/* 실제 이미지 */
+.partner-logo img {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 150px;
+  max-height: 48px;
+
+  object-fit: contain;
+
+  filter: grayscale(100%);
+
+  opacity: .52;
+
+  transition:
+    filter .3s ease,
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+
+/* 마우스를 올렸을 때 */
+.partner-logo:hover img {
+  filter: grayscale(0%);
+
+  opacity: 1;
+
+  transform:
+    scale(1.06);
+}
+
+
+/* 로고에 마우스를 올리면 흐름 정지 */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+
+/* 로고 전체 이동 */
+@keyframes partnerMarquee {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-50%);
+  }
+
+}
+
+
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .services {
+      background: var(--bg);
+    }
+
+    .bento {
+      display: grid;
+
+      grid-template-columns:
+        1.4fr .85fr .85fr;
+
+      grid-template-rows:
+        335px 335px;
+
+      gap: 16px;
+    }
+
+    .service-card {
+      position: relative;
+
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+
+      min-width: 0;
+
+      padding: 32px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: white;
+
+      transition:
+        transform .32s var(--ease),
+        border-color .32s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+
+      border-color: #cbd2ff;
+    }
+
+    .service-main {
+      grid-row: span 2;
+
+      padding: 40px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #edf0ff 0%,
+          #ffffff 66%
+        );
+    }
+
+    .service-wide {
+      grid-column: span 2;
+    }
+
+    .service-index {
+      position: absolute;
+
+      top: 27px;
+      right: 28px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .service-visual {
+      display: grid;
+
+      place-items: center;
+
+      width: 90px;
+      height: 90px;
+
+      margin-top: 28px;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--primary),
+          #7283ff
+        );
+
+      color: white;
+
+      font-size: 25px;
+      font-weight: 850;
+
+      box-shadow:
+        0 18px 45px rgba(64,88,232,.24);
+    }
+
+    .service-copy {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: auto;
+    }
+
+    .service-category {
+      display: block;
+
+      margin-bottom: 12px;
+
+      color: var(--primary);
+
+      font-size: 9px;
+      font-weight: 850;
+
+      letter-spacing: .15em;
+    }
+
+    .service-card h3 {
+      margin: 0 0 13px;
+
+      font-size: 34px;
+
+      letter-spacing: -.05em;
+    }
+
+    .service-main h3 {
+      font-size: 58px;
+    }
+
+    .service-card p {
+      max-width: 420px;
+
+      margin: 0;
+
+      color: var(--sub);
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: 20px;
+    }
+
+    .tags span {
+      padding: 7px 10px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.75);
+
+      color: #555d69;
+
+      font-size: 10px;
+      font-weight: 650;
+    }
+
+    .service-link {
+      display: inline-flex;
+
+      margin-top: 25px;
+
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .service-bg-circle {
+      position: absolute;
+
+      width: 390px;
+      height: 390px;
+
+      top: -170px;
+      right: -140px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(103, 126, 255, .25),
+          transparent 68%
+        );
+    }
+
+
+    /* =========================================================
+       CASES
+    ========================================================= */
+
+    .cases {
+      background: white;
+    }
+
+    .case-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+    .case-card {
+      display: block;
+    }
+
+    .case-visual {
+      position: relative;
+
+      overflow: hidden;
+
+      height: 415px;
+
+      border-radius: var(--radius);
+
+      transition:
+        transform .35s var(--ease);
+    }
+
+    .case-card:hover .case-visual {
+      transform: translateY(-5px);
+    }
+
+    .case-visual.ai {
+      background:
+        linear-gradient(
+          145deg,
+          #e4e9ff,
+          #6178ed
+        );
+    }
+
+    .case-visual.leadership {
+      background:
+        linear-gradient(
+          145deg,
+          #efe9dd,
+          #b0a58e
+        );
+    }
+
+    .case-visual.culture {
+      background:
+        linear-gradient(
+          145deg,
+          #e1f1ec,
+          #78ad9c
+        );
+    }
+
+    .case-lines {
+      position: absolute;
+
+      inset: 0;
+
+      opacity: .3;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.5) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.5) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        55px 55px;
+    }
+
+    .case-symbol {
+      position: absolute;
+
+      left: 34px;
+      bottom: 34px;
+
+      color: white;
+
+      font-size: 65px;
+      font-weight: 850;
+
+      line-height: .9;
+
+      letter-spacing: -.075em;
+    }
+
+    .case-number {
+      position: absolute;
+
+      top: 20px;
+      right: 20px;
+
+      display: grid;
+
+      place-items: center;
+
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.88);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .case-info {
+      padding: 25px 5px 0;
+    }
+
+    .case-info > span {
+      color: var(--primary);
+
+      font-size: 9px;
+      font-weight: 850;
+
+      letter-spacing: .14em;
+    }
+
+    .case-info h3 {
+      margin: 13px 0;
+
+      font-size: 27px;
+      line-height: 1.18;
+
+      letter-spacing: -.04em;
+    }
+
+    .case-info p {
+      min-height: 68px;
+
+      margin: 0 0 20px;
+
+      color: var(--sub);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .case-link {
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       APPROACH
+    ========================================================= */
+
+    .approach {
+      background: var(--dark);
+      color: white;
+    }
+
+    .approach .section-title span {
+      color: #666a74;
+    }
+
+    .approach .section-head-copy {
+      color: #9599a3;
+    }
+
+    .process {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      margin-top: 75px;
+
+      border-top:
+        1px solid #303238;
+    }
+
+    .process-item {
+      min-height: 340px;
+
+      padding: 28px 25px;
+
+      border-right:
+        1px solid #303238;
+
+      transition:
+        background .25s;
+    }
+
+    .process-item:last-child {
+      border-right: 0;
+    }
+
+    .process-item:hover {
+      background: var(--dark-2);
+    }
+
+    .process-number {
+      color: #737781;
+
+      font-size: 11px;
+    }
+
+    .process-en {
+      display: block;
+
+      margin-top: 100px;
+
+      color: #8391ef;
+
+      font-size: 9px;
+      font-weight: 850;
+
+      letter-spacing: .14em;
+    }
+
+    .process-item h3 {
+      margin: 13px 0 16px;
+
+      font-size: 23px;
+
+      letter-spacing: -.035em;
+    }
+
+    .process-item p {
+      margin: 0;
+
+      color: #9499a3;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       PROGRAMS
+    ========================================================= */
+
+    .programs {
+      background: white;
+    }
+
+    .program-list {
+      border-top:
+        1px solid var(--border);
+    }
+
+    .program {
+      display: grid;
+
+      grid-template-columns:
+        70px 150px 1.2fr 1fr 40px;
+
+      align-items: center;
+
+      gap: 24px;
+
+      min-height: 145px;
+
+      border-bottom:
+        1px solid var(--border);
+
+      transition:
+        background .25s,
+        padding .25s var(--ease);
+    }
+
+    .program:hover {
+      padding-inline: 15px;
+
+      background: #fafbfc;
+    }
+
+    .program-no {
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    .program-category {
+      color: var(--primary);
+
+      font-size: 9px;
+      font-weight: 850;
+
+      letter-spacing: .13em;
+    }
+
+    .program h3 {
+      margin: 0;
+
+      font-size: 24px;
+
+      letter-spacing: -.035em;
+    }
+
+    .program p {
+      margin: 0;
+
+      color: var(--sub);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .program-arrow {
+      font-size: 19px;
+    }
+
+
+    /* =========================================================
+       STATS
+    ========================================================= */
+
+    .stats {
+      padding: 130px 0;
+
+      background: var(--primary);
+      color: white;
+    }
+
+    .stats-grid {
+      display: grid;
+
+      grid-template-columns:
+        .9fr 1.1fr;
+
+      align-items: end;
+
+      gap: 100px;
+    }
+
+    .stats .section-label {
+      color: #c5ccff;
+    }
+
+    .stats .section-title span {
+      color: #adb8ff;
+    }
+
+    .stat-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+    }
+
+    .stat {
+      padding-left: 24px;
+
+      border-left:
+        1px solid rgba(255,255,255,.25);
+    }
+
+    .stat strong {
+      display: block;
+
+      font-size: clamp(46px, 5vw, 68px);
+      line-height: 1;
+
+      letter-spacing: -.065em;
+    }
+
+    .stat strong small {
+      font-size: 20px;
+    }
+
+    .stat span {
+      display: block;
+
+      margin-top: 16px;
+
+      color: #d6dbff;
+
+      font-size: 11px;
+    }
+
+    .stats-note {
+      margin-top: 22px;
+
+      color: #c8d0ff;
+
+      font-size: 10px;
+    }
+
+
+    /* =========================================================
+       TESTIMONIAL
+    ========================================================= */
+
+    .testimonial {
+      background: var(--bg);
+    }
+
+    .quote-box {
+      padding:
+        65px 75px 45px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-lg);
+
+      background: white;
+    }
+
+    .quote-mark {
+      height: 60px;
+
+      color: var(--primary);
+
+      font-family: Georgia, serif;
+
+      font-size: 100px;
+      line-height: .85;
+    }
+
+    blockquote {
+      max-width: 1000px;
+
+      margin:
+        25px 0 70px;
+
+      font-size: clamp(29px, 4vw, 51px);
+      font-weight: 620;
+
+      line-height: 1.36;
+
+      letter-spacing: -.045em;
+    }
+
+    .quote-footer {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-end;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+    .quote-company strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      font-size: 13px;
+    }
+
+    .quote-company span,
+    .quote-count {
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+
+    /* =========================================================
+       INSIGHT
+    ========================================================= */
+
+    .insights {
+      background: white;
+    }
+
+    .insight-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+    .insight-card {
+      position: relative;
+
+      min-height: 370px;
+
+      display: flex;
+      flex-direction: column;
+
+      padding: 30px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--bg);
+
+      transition:
+        transform .3s var(--ease),
+        background .3s;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-5px);
+
+      background: var(--primary-light);
+    }
+
+    .insight-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      font-weight: 750;
+
+      letter-spacing: .11em;
+    }
+
+    .insight-top span:first-child {
+      color: var(--primary);
+    }
+
+    .insight-card h3 {
+      max-width: 300px;
+
+      margin-top: auto;
+      margin-bottom: 0;
+
+      font-size: 31px;
+      line-height: 1.2;
+
+      letter-spacing: -.045em;
+    }
+
+    .insight-arrow {
+      position: absolute;
+
+      right: 28px;
+      bottom: 28px;
+
+      font-size: 21px;
+    }
+
+
+    /* =========================================================
+       CONTACT CTA
+    ========================================================= */
+
+    .contact {
+      padding:
+        40px 0 120px;
+
+      background: white;
+    }
+
+    .contact-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding:
+        95px 75px;
+
+      border-radius: var(--radius-lg);
+
+      background: var(--dark);
+
+      color: white;
+    }
+
+    .contact-content {
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .contact-label {
+      color: #8e9cff;
+
+      font-size: 9px;
+      font-weight: 850;
+
+      letter-spacing: .16em;
+    }
+
+    .contact-card h2 {
+      max-width: 800px;
+
+      margin:
+        24px 0;
+
+      font-size: clamp(48px, 6vw, 75px);
+      line-height: 1.05;
+
+      letter-spacing: -.06em;
+    }
+
+    .contact-card p {
+      margin: 0;
+
+      color: #999ea8;
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .contact-actions {
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 35px;
+    }
+
+    .contact-info {
+      display: flex;
+
+      gap: 35px;
+
+      margin-top: 55px;
+    }
+
+    .contact-info-item small {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #666c76;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: .13em;
+    }
+
+    .contact-info-item a {
+      color: #d9dce2;
+
+      font-size: 12px;
+    }
+
+    .contact-glow {
+      position: absolute;
+
+      width: 650px;
+      height: 650px;
+
+      top: -290px;
+      right: -130px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(78, 101, 238, .72),
+          transparent 66%
+        );
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .footer {
+      padding:
+        70px 0 35px;
+
+      background: #f4f5f7;
+    }
+
+    .footer-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 60px;
+
+      padding-bottom: 65px;
+    }
+
+    .footer-brand p {
+      margin: 18px 0 0;
+
+      color: var(--sub);
+
+      font-size: 11px;
+    }
+
+    .footer-nav {
+      display: flex;
+
+      gap: 80px;
+    }
+
+    .footer-column {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 11px;
+    }
+
+    .footer-column strong {
+      margin-bottom: 5px;
+
+      font-size: 10px;
+    }
+
+    .footer-column a,
+    .footer-column span {
+      color: var(--sub);
+
+      font-size: 11px;
+    }
+
+    .footer-column a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+
+      justify-content: space-between;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--muted);
+
+      font-size: 9px;
+    }
+
+
+    /* =========================================================
+       MOBILE CTA
+    ========================================================= */
+
+    .mobile-contact {
+      display: none;
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(22px);
+
+      transition:
+        opacity .8s var(--ease),
+        transform .8s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+
+    @keyframes floating {
+      0%,
+      100% {
+        transform:
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translateY(-10px);
+      }
+    }
+
+   
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1050px) {
+
+      .nav,
+      .header-button {
+        display: none;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav.mobile-open {
+        position: fixed;
+
+        top: 70px;
+        left: 16px;
+        right: 16px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 12px;
+
+        border:
+          1px solid var(--border);
+
+        border-radius: 18px;
+
+        background:
+          rgba(255,255,255,.97);
+
+        box-shadow:
+          0 25px 60px
+          rgba(25,35,70,.13);
+
+        backdrop-filter: blur(20px);
+      }
+
+      .nav.mobile-open a {
+        padding: 15px 10px;
+
+        border-bottom:
+          1px solid var(--border);
+
+        font-size: 15px;
+      }
+
+      .nav.mobile-open a:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        min-height: auto;
+
+        padding-top: 145px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+      }
+
+      .hero-visual {
+        min-height: 580px;
+      }
+
+      .hero-panel {
+        left: 50%;
+        right: auto;
+
+        width: 72%;
+
+        transform:
+          translateX(-50%);
+      }
+
+      .bento {
+        grid-template-columns:
+          1fr 1fr;
+
+        grid-template-rows: auto;
+      }
+
+      .service-card {
+        min-height: 320px;
+      }
+
+      .service-main {
+        grid-row: span 2;
+      }
+
+      .service-wide {
+        grid-column: auto;
+      }
+
+      .case-grid {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .process {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .process-item {
+        border-bottom:
+          1px solid #303238;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+      }
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 720px) {
+
+      .container {
+        width:
+          min(
+            calc(100% - 32px),
+            var(--container)
+          );
+      }
+
+      .section {
+        padding:
+          95px 0;
+      }
+
+      .header-inner {
+        height: 68px;
+      }
+
+      .hero {
+        padding:
+          115px 0 70px;
+      }
+
+      .hero h1 {
+        font-size:
+          clamp(44px, 13.5vw, 59px);
+      }
+
+      .hero-description {
+        margin-top: 27px;
+
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        margin-top: 31px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-meta {
+        flex-wrap: wrap;
+
+        gap: 18px;
+      }
+
+      .hero-visual {
+        min-height: 430px;
+      }
+
+      .hero-panel {
+        top: 25px;
+
+        width: 88%;
+        height: 355px;
+
+        border-radius:
+          90px 23px 23px 23px;
+      }
+
+      .hero-panel-copy strong {
+        font-size: 29px;
+      }
+
+      .floating-card {
+        min-width: 148px;
+
+        padding: 15px;
+      }
+
+      .floating-card strong {
+        font-size: 16px;
+      }
+
+      .floating-card.first {
+        left: -3px;
+      }
+
+      .floating-card.second {
+        right: -3px;
+      }
+
+      .hero-yellow {
+        left: 0;
+
+        width: 40px;
+        height: 40px;
+      }
+
+      .section-head {
+        display: block;
+
+        margin-bottom: 45px;
+      }
+
+      .section-title {
+        font-size: 40px;
+      }
+
+      .section-head-copy {
+        margin-top: 25px;
+
+        font-size: 14px;
+      }
+
+      .bento {
+        display: block;
+      }
+
+      .service-card {
+        min-height: 320px;
+
+        margin-bottom: 12px;
+
+        padding: 27px;
+      }
+
+      .service-main {
+        min-height: 500px;
+      }
+
+      .service-main h3 {
+        font-size: 46px;
+      }
+
+      .service-card h3 {
+        font-size: 31px;
+      }
+
+      .case-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .case-visual {
+        height: 350px;
+      }
+
+      .process {
+        display: block;
+
+        margin-top: 50px;
+      }
+
+      .process-item {
+        min-height: auto;
+
+        padding:
+          28px 0 37px;
+
+        border-right: 0;
+      }
+
+      .process-en {
+        margin-top: 45px;
+      }
+
+      .program {
+        position: relative;
+
+        display: block;
+
+        min-height: auto;
+
+        padding:
+          27px 0;
+      }
+
+      .program:hover {
+        padding-inline: 0;
+      }
+
+      .program-category {
+        display: block;
+
+        margin:
+          14px 0 10px;
+      }
+
+      .program h3 {
+        margin-bottom: 13px;
+      }
+
+      .program p {
+        padding-right: 35px;
+      }
+
+      .program-arrow {
+        position: absolute;
+
+        right: 4px;
+        bottom: 30px;
+      }
+
+      .stat-list {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+      }
+
+      .stat {
+        padding:
+          0 0 28px;
+
+        border-left: 0;
+
+        border-bottom:
+          1px solid
+          rgba(255,255,255,.25);
+      }
+
+      .quote-box {
+        padding:
+          42px 25px 28px;
+      }
+
+      blockquote {
+        margin-bottom: 50px;
+
+        font-size: 28px;
+      }
+
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .insight-card {
+        min-height: 290px;
+      }
+
+      .contact {
+        padding-bottom: 95px;
+      }
+
+      .contact-card {
+        padding:
+          58px 26px;
+      }
+
+      .contact-card h2 {
+        font-size: 43px;
+      }
+
+      .contact-actions {
+        flex-direction: column;
+      }
+
+      .contact-actions .button {
+        width: 100%;
+      }
+
+      .contact-info {
+        flex-direction: column;
+
+        gap: 22px;
+
+        margin-top: 45px;
+      }
+
+      .footer-top {
+        display: block;
+      }
+
+      .footer-nav {
+        display: grid;
+
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 40px;
+
+        margin-top: 45px;
+      }
+
+      .footer-column:last-child {
+        grid-column: span 2;
+      }
+
+      .footer-bottom {
+        display: block;
+
+        line-height: 2;
+      }
+
+      .mobile-contact {
+        position: fixed;
+
+        z-index: 900;
+
+        left: 16px;
+        right: 16px;
+        bottom: 14px;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        height: 54px;
+
+        border-radius: 13px;
+
+        background: var(--primary);
+        color: white;
+
+        box-shadow:
+          0 15px 35px
+          rgba(64,88,232,.32);
+
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+    }
+
+
+    @media (
+      prefers-reduced-motion: reduce
+    ) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+      }
+.partner-set {
+  gap: 32px;
+  padding-right: 32px;
+}
+
+.partner-logo {
+  width: 125px;
+  height: 58px;
+}
+
+.partner-logo img {
+  max-width: 115px;
+  max-height: 38px;
+}
+
+.marquee::before,
+.marquee::after {
+  width: 40px;
+}
+    }
+  </style>
 </head>
 
-<body class="bg-white text-slate-800 antialiased">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#top" class="flex items-center gap-3">
-                <img src="logo.png" alt="ODS Group 로고" class="w-10 h-10 object-contain rounded-lg shadow-sm">
-                <span class="text-xl font-bold tracking-tight text-slate-900">오디에스그룹</span>
-            </a>
-            
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="partners.html" class="text-slate-500 hover:text-brand font-semibold transition">고객사</a>
-                <a href="#themes" class="text-slate-500 hover:text-brand font-semibold transition">프로그램 테마</a>
-                <a href="#best" class="text-slate-500 hover:text-brand font-semibold transition">베스트 과정</a>
-                <a href="#contact" class="bg-brand hover:bg-blue-600 text-white px-7 py-3 rounded-full font-bold transition shadow-lg shadow-blue-500/20">맞춤 교육 문의</a>
-            </nav>
+<body>
 
-            <button class="md:hidden p-2 text-slate-600" id="mobile-menu-btn">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                <a href="partners.html" class="block px-4 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-xl">고객사</a>
-                <a href="#themes" class="block px-4 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-xl">프로그램 테마</a>
-                <a href="#best" class="block px-4 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-xl">베스트 과정</a>
-                <a href="#contact" class="block px-4 py-4 text-base font-bold text-brand hover:bg-blue-50 rounded-xl">맞춤 교육 문의</a>
-            </div>
-        </div>
-    </header>
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
 
-    <section id="top" class="relative w-full h-[85vh] min-h-[650px] bg-slate-900 overflow-hidden group">
-        
-        <div class="hero-slide absolute inset-0 z-10 transition-opacity duration-1000 opacity-100">
-            <img src="best-02.jpg" alt="리더십" class="absolute inset-0 w-full h-full object-cover opacity-50 scale-105 transition-transform duration-[10s]">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-blue-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">01. LEADERSHIP</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">요즘 팀장들의 생존 스킬,<br><span class="text-blue-400 font-extrabold">실전 리더십 부스트업</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">밀레니얼 리더의 역할 전환부터 성과를 이끄는 피드백까지,<br>현장에서 즉시 작동하는 리더십 파이프라인을 설계합니다.</p>
-                    <div class="flex items-center gap-8">
-                        <a href="#contact" class="bg-white text-slate-900 hover:bg-blue-50 px-10 py-5 rounded-full font-extrabold text-lg transition duration-300 shadow-2xl">제안서 요청하기</a>
-                        <div class="hidden sm:flex flex-col items-center gap-2 text-white/50 animate-subtle-bounce">
-                            <span class="text-[10px] font-bold tracking-widest uppercase">Scroll Down</span>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <header class="header" id="header">
 
-        <div class="hero-slide absolute inset-0 z-0 transition-opacity duration-1000 opacity-0">
-            <img src="best-04.jpg" alt="성과관리" class="absolute inset-0 w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-emerald-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">02. PERFORMANCE</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">평가 시즌의 진통을 줄이는<br><span class="text-emerald-400 font-extrabold">성과관리 시스템의 해답</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">공정한 평가 지표 셋업부터 원온원(1:1) 면담 스킬까지,<br>핵심인재 리텐션과 목표 달성을 위한 솔루션을 제안합니다.</p>
-                    <a href="#themes" class="inline-block bg-emerald-500 text-white hover:bg-emerald-600 px-10 py-5 rounded-full font-extrabold text-lg transition shadow-2xl">컨설팅 과정 보기</a>
-                </div>
-            </div>
-        </div>
+    <div class="container header-inner">
 
-        <div class="hero-slide absolute inset-0 z-0 transition-opacity duration-1000 opacity-0">
-            <img src="best-01.jpg" alt="조직문화" class="absolute inset-0 w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-orange-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">03. CULTURE</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">일하고 싶은 조직문화는<br><span class="text-orange-400 font-extrabold">행동으로 설계됩니다</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">딕싯, 스트림스 등 검증된 교구를 활용하여<br>구성원의 심리적 안전감을 구축하고 소통을 이끌어냅니다.</p>
-                    <a href="#contact" class="inline-block bg-orange-500 text-white hover:bg-orange-600 px-10 py-5 rounded-full font-extrabold text-lg transition shadow-2xl">워크숍 문의하기</a>
-                </div>
-            </div>
-        </div>
+  
+       <a
+  href="#top"
+  class="brand"
+  aria-label="ODS Group"
+>
+  <img
+    src="logo.png"
+    alt="ODS Group"
+    class="brand-logo"
+  >
+</a>
 
-        <div class="hero-slide absolute inset-0 z-0 transition-opacity duration-1000 opacity-0">
-            <img src="best-03.jpg" alt="AI 데이터" class="absolute inset-0 w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-indigo-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">04. AI & DATA</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">감이 아닌 데이터로 말하는<br><span class="text-indigo-400 font-extrabold">AI 기반 데이터 분석 실무</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">복잡한 로우 데이터부터 시장 트렌드 분석까지,<br>AI를 활용한 빠르고 정확한 의사결정 역량을 기릅니다.</p>
-                    <a href="#themes" class="inline-block bg-indigo-500 text-white hover:bg-indigo-600 px-10 py-5 rounded-full font-extrabold text-lg transition shadow-2xl">데이터 과정 보기</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="hero-slide absolute inset-0 z-0 transition-opacity duration-1000 opacity-0">
-            <img src="best-05.jpg" alt="AI 기획" class="absolute inset-0 w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-purple-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">05. AI STRATEGY</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">막막한 기획의 돌파구,<br><span class="text-purple-400 font-extrabold">AI 활용 논리적 기획력 향상</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">NotebookLM, Gemini 등을 업무 파트너로 삼아<br>설득력 있는 기획안을 도출하는 프레임워크를 학습합니다.</p>
-                    <a href="#contact" class="inline-block bg-purple-500 text-white hover:bg-purple-600 px-10 py-5 rounded-full font-extrabold text-lg transition shadow-2xl">기획 교육 문의</a>
-                </div>
-            </div>
-        </div>
+      <nav
+        class="nav"
+        id="nav"
+      >
+        <a href="#services">Services</a>
+        <a href="#programs">Programs</a>
+        <a href="#cases">Cases</a>
+        <a href="#insight">Insight</a>
+        <a href="#about">About</a>
+      </nav>
 
-        <div class="hero-slide absolute inset-0 z-0 transition-opacity duration-1000 opacity-0">
-            <img src="best-08.jpg" alt="AI 자동화" class="absolute inset-0 w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent"></div>
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <span class="text-teal-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 block">06. AI AUTOMATION</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">매일 30분 빠른 퇴근의 비밀,<br><span class="text-teal-400 font-extrabold">생성형 AI 실무 밀착 실습</span></h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mb-12 leading-relaxed">Agentic AI 개념을 도입하여 우리 조직의 업무 시나리오에<br>즉시 적용 가능한 자동화 활용법을 익힙니다.</p>
-                    <a href="#themes" class="inline-block bg-teal-500 text-white hover:bg-teal-600 px-10 py-5 rounded-full font-extrabold text-lg transition shadow-2xl">자동화 커리큘럼 보기</a>
-                </div>
-            </div>
-        </div>
 
-        <button onclick="prevSlide()" class="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 text-white w-14 h-14 flex items-center justify-center rounded-full backdrop-blur-md transition opacity-0 group-hover:opacity-100 hidden md:flex">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-        <button onclick="nextSlide()" class="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 text-white w-14 h-14 flex items-center justify-center rounded-full backdrop-blur-md transition opacity-0 group-hover:opacity-100 hidden md:flex">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      <div class="header-actions">
+
+        <a
+          href="#contact"
+          class="button button-dark header-button"
+        >
+          교육·컨설팅 문의
+        </a>
+
+        <button
+          class="menu-button"
+          id="menuButton"
+          aria-label="메뉴 열기"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
         </button>
 
-        <div class="absolute bottom-10 left-0 right-0 z-20 flex justify-center gap-3">
-            <button onclick="goToSlide(0)" class="slide-dot w-10 h-1.5 rounded-full bg-white transition-all"></button>
-            <button onclick="goToSlide(1)" class="slide-dot w-10 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all"></button>
-            <button onclick="goToSlide(2)" class="slide-dot w-10 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all"></button>
-            <button onclick="goToSlide(3)" class="slide-dot w-10 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all"></button>
-            <button onclick="goToSlide(4)" class="slide-dot w-10 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all"></button>
-            <button onclick="goToSlide(5)" class="slide-dot w-10 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all"></button>
-        </div>
-    </section>
+      </div>
 
-    <section class="py-24 bg-white overflow-hidden border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-            <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">Our Partners</span>
-            <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">오디에스그룹과 함께하는 최고의 기업들</h2>
-        </div>
-        <div class="relative w-full">
-            <div class="animate-scroll flex items-center gap-20 px-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                <img src="kyungshin%20logo.png" alt="Kyungshin" class="h-10 object-contain">
-                <img src="SK%20logo.svg" alt="SK" class="h-10 object-contain">
-                <img src="Shinsegae%20I%20%26%20C.jpg" alt="Shinsegae" class="h-10 object-contain">
-                <img src="bucheon.png" alt="Bucheon" class="h-10 object-contain">
-                <img src="yongma.png" alt="Yongma" class="h-10 object-contain">
-                <img src="hyundae-bng.png" alt="Hyundae" class="h-10 object-contain">
-                <img src="partner-07.png" alt="P7" class="h-10 object-contain">
-                <img src="partner-08.png" alt="P8" class="h-10 object-contain">
-                <img src="kyungshin%20logo.png" alt="Kyungshin" class="h-10 object-contain">
-                <img src="SK%20logo.svg" alt="SK" class="h-10 object-contain">
-                <img src="Shinsegae%20I%20%26%20C.jpg" alt="Shinsegae" class="h-10 object-contain">
-                <img src="bucheon.png" alt="Bucheon" class="h-10 object-contain">
-            </div>
-        </div>
-    </section>
-
-    <section id="themes" class="py-24 bg-mesh">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-bold mb-4">Core Programs</span>
-                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">성장을 견인하는 맞춤 교육</h2>
-                <p class="text-lg text-slate-500 max-w-2xl mx-auto">HR 담당자의 고민을 가장 잘 이해하는 오디에스그룹의 세분화된 커리큘럼입니다.</p>
-            </div>
-
-            <div class="flex justify-start md:justify-center overflow-x-auto gap-2 mb-12 hide-scrollbar p-1">
-                <button onclick="switchTab('tab-ai')" id="btn-tab-ai" class="tab-btn px-8 py-4 rounded-2xl font-bold text-base transition-all bg-brand text-white shadow-xl shadow-blue-200">AI & AX 밀착 실습</button>
-                <button onclick="switchTab('tab-culture')" id="btn-tab-culture" class="tab-btn px-8 py-4 rounded-2xl font-bold text-base transition-all bg-white text-slate-500 hover:bg-slate-50 border border-slate-100">조직문화 & 소통</button>
-                <button onclick="switchTab('tab-work')" id="btn-tab-work" class="tab-btn px-8 py-4 rounded-2xl font-bold text-base transition-all bg-white text-slate-500 hover:bg-slate-50 border border-slate-100">일 잘하는 사람들</button>
-                <button onclick="switchTab('tab-hrm')" id="btn-tab-hrm" class="tab-btn px-8 py-4 rounded-2xl font-bold text-base transition-all bg-white text-slate-500 hover:bg-slate-50 border border-slate-100">핵심인재 리텐션</button>
-            </div>
-
-            <div class="min-h-[450px]">
-                
-                <div id="tab-ai" class="tab-pane block">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <a href="ai-ax.html" class="group bg-white rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(10,132,255,0.15)] hover:-translate-y-2 transition-all duration-500 border border-slate-100">
-                            <div class="h-2 w-full bg-indigo-500"></div>
-                            <div class="p-10">
-                                <div class="text-4xl mb-6">📊</div>
-                                <h3 class="text-2xl font-black text-slate-900 mb-6 group-hover:text-brand transition">데이터분석활용 AI</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg text-sm font-bold">#데이터_기반_의사결정</span>
-                                    <span class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg text-sm font-bold">#성과_예측_모델링</span>
-                                    <span class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg text-sm font-bold">#실무_자동_리포팅</span>
-                                    <span class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg text-sm font-bold">#BI_시각화_혁신</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="ai-ax.html" class="group bg-white rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(129,140,248,0.15)] hover:-translate-y-2 transition-all duration-500 border border-slate-100">
-                            <div class="h-2 w-full bg-purple-500"></div>
-                            <div class="p-10">
-                                <div class="text-4xl mb-6">💡</div>
-                                <h3 class="text-2xl font-black text-slate-900 mb-6 group-hover:text-brand transition">AI 활용 기획력 향상</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-purple-50 text-purple-600 px-3 py-1.5 rounded-lg text-sm font-bold">#논리적_기획안</span>
-                                    <span class="bg-purple-50 text-purple-600 px-3 py-1.5 rounded-lg text-sm font-bold">#생각의_구조화</span>
-                                    <span class="bg-purple-50 text-purple-600 px-3 py-1.5 rounded-lg text-sm font-bold">#아이디어_구체화</span>
-                                    <span class="bg-purple-50 text-purple-600 px-3 py-1.5 rounded-lg text-sm font-bold">#NotebookLM</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="ai-ax.html" class="group bg-white rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(20,184,166,0.15)] hover:-translate-y-2 transition-all duration-500 border border-slate-100">
-                            <div class="h-2 w-full bg-teal-500"></div>
-                            <div class="p-10">
-                                <div class="text-4xl mb-6">⚡</div>
-                                <h3 class="text-2xl font-black text-slate-900 mb-6 group-hover:text-brand transition">AI 업무 자동화 실습</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-teal-50 text-teal-600 px-3 py-1.5 rounded-lg text-sm font-bold">#반복업무_자동화</span>
-                                    <span class="bg-teal-50 text-teal-600 px-3 py-1.5 rounded-lg text-sm font-bold">#매일_30분_칼퇴</span>
-                                    <span class="bg-teal-50 text-teal-600 px-3 py-1.5 rounded-lg text-sm font-bold">#에이전트_AI</span>
-                                    <span class="bg-teal-50 text-teal-600 px-3 py-1.5 rounded-lg text-sm font-bold">#워크플로우_최적화</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="tab-culture" class="tab-pane hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-white rounded-[2rem] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 hover:shadow-xl transition-all">
-                            <div class="h-2 w-full bg-orange-500 absolute top-0 left-0"></div>
-                            <div class="text-4xl mb-6">🔍</div>
-                            <h3 class="text-2xl font-black text-slate-900 mb-4">성향 진단 워크숍</h3>
-                            <p class="text-slate-500 font-medium">버크만, DISC, ICRU 등 검증된 도구로 팀원의 성향을 정밀하게 분석합니다.</p>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 hover:shadow-xl transition-all">
-                            <div class="text-4xl mb-6">🔥</div>
-                            <h3 class="text-2xl font-black text-slate-900 mb-4">조직 동기부여</h3>
-                            <p class="text-slate-500 font-medium">자발적인 몰입과 자긍심을 고취시키는 고유의 게이미피케이션 과정을 제공합니다.</p>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 hover:shadow-xl transition-all">
-                            <div class="text-4xl mb-6">🤝</div>
-                            <h3 class="text-2xl font-black text-slate-900 mb-4">세대 간 소통</h3>
-                            <p class="text-slate-500 font-medium">기성세대와 MZ세대 사이의 딜레마를 해소하는 실전 커뮤니케이션 가이드입니다.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-work" class="tab-pane hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">🧩</div>
-                            <h4 class="text-lg font-bold mb-2">문제 해결</h4>
-                            <p class="text-sm text-slate-500">본질적 원인 파악 및 해결책 도출</p>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">✨</div>
-                            <h4 class="text-lg font-bold mb-2">창의적 발상</h4>
-                            <p class="text-sm text-slate-500">디자인씽킹 기반의 아이디어 혁신</p>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">🧠</div>
-                            <h4 class="text-lg font-bold mb-2">논리적 사고</h4>
-                            <p class="text-sm text-slate-500">로직트리와 MECE 기획 스킬</p>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">🎤</div>
-                            <h4 class="text-lg font-bold mb-2">사내강사 양성</h4>
-                            <p class="text-sm text-slate-500">우수 지식 전파를 위한 교수법</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-hrm" class="tab-pane hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">🌱</div>
-                            <h4 class="text-lg font-bold mb-2">신규입사자 온보딩</h4>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">💎</div>
-                            <h4 class="text-lg font-bold mb-2">인재 리텐션</h4>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">⚖️</div>
-                            <h4 class="text-lg font-bold mb-2">공평한 평가제도</h4>
-                        </div>
-                        <div class="bg-white rounded-[2rem] p-8 shadow-md border border-slate-50">
-                            <div class="text-3xl mb-4">👋</div>
-                            <h4 class="text-lg font-bold mb-2">퇴사자 관리</h4>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="pt-10 pb-32 bg-slate-50 overflow-hidden border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
-            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1.5 rounded-full text-sm font-bold mb-4 uppercase tracking-wider">Testimonials</span>
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900">현장에서 증명된 압도적인 교육 만족도</h2>
-        </div>
-        
-        <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-            
-            <div class="animate-scroll-slow flex gap-6 pl-6">
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"역대급으로 몰입도 높은 워크숍"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">단순히 듣기만 하는 교육이 아니라, 팀원들이 직접 참여하고 결과물을 만들어내는 과정이 놀라웠습니다. 현업 적용도가 매우 높습니다.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">P사</div>
-                        <div class="text-sm font-bold text-slate-700">식품기업 HR 교육담당자</div>
-                    </div>
-                </div>
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"실무형 AI 교육의 정석입니다"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">이론만 나열하는 타사 교육과 달리, 우리 회사의 실제 데이터를 가지고 엑셀과 프롬프트를 연동해보는 실습이 가장 유익했습니다.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">K사</div>
-                        <div class="text-sm font-bold text-slate-700">제조업 혁신추진팀장</div>
-                    </div>
-                </div>
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"리더들의 변화가 눈에 띕니다"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">신임 팀장들의 가장 큰 고민인 성과관리와 면담 스킬을 속 시원하게 긁어주셨습니다. 만족도 조사에서 5점 만점이 쏟아졌네요.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm">O사</div>
-                        <div class="text-sm font-bold text-slate-700">IT 솔루션기업 인사팀장</div>
-                    </div>
-                </div>
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"팀빌딩 교구가 정말 신선했어요"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">서먹했던 부서원들이 딕싯과 스트림스 교구를 활용한 워크숍 덕분에 2시간 만에 완전히 하나가 되었습니다. 분위기 전환 최고입니다.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm">S사</div>
-                        <div class="text-sm font-bold text-slate-700">공공기관 조직문화담당</div>
-                    </div>
-                </div>
-
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"역대급으로 몰입도 높은 워크숍"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">단순히 듣기만 하는 교육이 아니라, 팀원들이 직접 참여하고 결과물을 만들어내는 과정이 놀라웠습니다. 현업 적용도가 매우 높습니다.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">P사</div>
-                        <div class="text-sm font-bold text-slate-700">식품기업 HR 교육담당자</div>
-                    </div>
-                </div>
-                <div class="w-80 md:w-[26rem] bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 flex-shrink-0">
-                    <div class="flex text-yellow-400 text-lg mb-3">★★★★★</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">"실무형 AI 교육의 정석입니다"</h3>
-                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">이론만 나열하는 타사 교육과 달리, 우리 회사의 실제 데이터를 가지고 엑셀과 프롬프트를 연동해보는 실습이 가장 유익했습니다.</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">K사</div>
-                        <div class="text-sm font-bold text-slate-700">제조업 혁신추진팀장</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="best" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                <div>
-                    <span class="text-brand font-black tracking-widest text-sm uppercase">Best Programs</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3">2026 교육 시장 베스트</h2>
-                </div>
-                <p class="text-slate-500 font-medium">가장 많은 기업이 선택한 검증된 베스트 커리큘럼</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500">
-                    <img src="best-01.jpg" alt="조직문화" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex gap-2 mb-4"><span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold">워크숍</span><span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold">조직문화</span></div>
-                        <h3 class="text-xl font-bold mb-4">조직문화 형성 과정</h3>
-                        <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center gap-2">✔ 조직 내/외부 의사소통 가이드</li>
-                            <li class="flex items-center gap-2">✔ 실무 중심의 협업 방식 체득</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500">
-                    <img src="best-02.jpg" alt="리더십" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex gap-2 mb-4"><span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold">리더십</span><span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold">코칭</span></div>
-                        <h3 class="text-xl font-bold mb-4">리더십 부스트업</h3>
-                        <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center gap-2">✔ 리더의 역할 전환과 신뢰 형성</li>
-                            <li class="flex items-center gap-2">✔ 성과를 이끄는 피드백 스킬</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500">
-                    <img src="best-03.jpg" alt="AI실습" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex gap-2 mb-4"><span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold">실습</span><span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold">AI·자동화</span></div>
-                        <h3 class="text-xl font-bold mb-4">AI 업무 혁신 실전</h3>
-                        <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center gap-2">✔ 원하는 답을 얻는 프롬프트 엔지니어링</li>
-                            <li class="flex items-center gap-2">✔ 툴을 활용한 워크플로우 최적화</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl overflow-hidden relative border border-slate-100">
-                <div class="flex flex-col justify-center">
-                    <h2 class="text-4xl font-black text-slate-900 mb-6 leading-tight">우리 조직에 딱 맞는<br>교육이 필요하신가요?</h2>
-                    <p class="text-lg text-slate-500 mb-12">전문 컨설턴트가 최적의 솔루션을 제안해 드립니다.</p>
-                    <div class="space-y-6">
-                        <div class="flex gap-4"><div class="font-black w-24">대표번호</div><div class="text-slate-600">070-8778-9816</div></div>
-                        <div class="flex gap-4"><div class="font-black w-24">이메일</div><div class="text-slate-600">ods_kmw@odsgroup.co.kr</div></div>
-                        <div class="flex gap-4"><div class="font-black flex-shrink-0 w-24">주소</div><div class="text-slate-600 text-sm">서울 성동구 왕십리로 58 / 인천 연수구 송도과학로70</div></div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 p-8 rounded-3xl text-white shadow-2xl">
-                    <h3 class="text-xl font-bold mb-8">상담 요청하기</h3>
-                    <form action="https://formspree.io/f/xqewejbd" method="POST" class="space-y-6">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2 uppercase">기업명 / 기관명</label>
-                            <input type="text" name="기업명" required class="w-full bg-slate-800 border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-brand transition outline-none" placeholder="오디에스그룹">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2 uppercase">담당자명</label>
-                                <input type="text" name="담당자명" required class="w-full bg-slate-800 border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-brand transition outline-none" placeholder="홍길동">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2 uppercase">연락처</label>
-                                <input type="text" name="연락처" required class="w-full bg-slate-800 border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-brand transition outline-none" placeholder="010-0000-0000">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2 uppercase">관심 분야</label>
-                            <select name="관심분야" class="w-full bg-slate-800 border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-brand transition outline-none appearance-none">
-                                <option value="AI 및 디지털 전환">AI & 디지털 전환 (AX)</option>
-                                <option value="리더십 및 코칭">리더십 및 코칭</option>
-                                <option value="조직문화 워크숍">조직문화 및 팀빌딩</option>
-                                <option value="HRM 체계 구축">HRM 제도 및 평가</option>
-                                <option value="기타 과정">기타 맞춤 교육</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2 uppercase">상세 문의내용</label>
-                            <textarea name="문의내용" rows="3" class="w-full bg-slate-800 border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-brand transition outline-none resize-none" placeholder="상담 받고 싶은 교육 내용을 자유롭게 적어주세요."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-brand hover:bg-blue-600 text-white font-black py-5 rounded-xl mt-4 transition duration-300 shadow-xl shadow-blue-500/30">제안서 발송 요청</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-white py-16 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-sm text-slate-400">&copy; <span id="year"></span> ODS Group. All rights reserved.</div>
-            <div class="flex gap-8 items-center">
-                <a href="https://blog.naver.com/odsgroup1" target="_blank" class="hover:text-brand font-bold transition">네이버 블로그</a>
-                <a href="#top" class="text-slate-900 border border-slate-200 px-6 py-2.5 rounded-full hover:bg-slate-50 transition">맨 위로 &uarr;</a>
-            </div>
-        </div>
-    </footer>
-
-    <div id="kakao-btn" onclick="window.open('https://open.kakao.com/o/sdcISz3h', '_blank')">
-        <svg viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8"><path d="M12 3c-5.523 0-10 3.553-10 7.935 0 2.825 1.777 5.3 4.542 6.643-.223.837-.803 3.01-.84 3.23-.048.286.136.28.28.183.112-.075 3.324-2.222 4.67-3.155.44.06.892.09 1.348.09 5.523 0 10-3.553 10-7.935C22 6.553 17.523 3 12 3z"/></svg>
     </div>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
+  </header>
 
-        // 슬라이더 로직
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.slide-dot');
-        
-        function showSlide(idx) {
-            slides.forEach(s => { s.classList.replace('opacity-100', 'opacity-0'); s.classList.replace('z-10', 'z-0'); });
-            dots.forEach(d => d.classList.replace('bg-white', 'bg-white/30'));
-            slides[idx].classList.replace('opacity-0', 'opacity-100');
-            slides[idx].classList.replace('z-0', 'z-10');
-            dots[idx].classList.replace('bg-white/30', 'bg-white');
-            currentSlide = idx;
-        }
-        function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
-        function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
-        function goToSlide(idx) { showSlide(idx); }
-        setInterval(nextSlide, 7000);
 
-        // 탭 로직
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-pane').forEach(p => { p.classList.add('hidden'); p.classList.remove('block'); });
-            document.getElementById(tabId).classList.replace('hidden', 'block');
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.classList.remove('bg-brand', 'text-white', 'shadow-xl', 'shadow-blue-200');
-                b.classList.add('bg-white', 'text-slate-500', 'border-slate-100');
-            });
-            document.getElementById('btn-' + tabId).classList.add('bg-brand', 'text-white', 'shadow-xl', 'shadow-blue-200');
-            document.getElementById('btn-' + tabId).classList.remove('bg-white', 'text-slate-500', 'border-slate-100');
+
+  <main id="top">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy reveal">
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            AI · HRD · HRM CONSULTING
+          </div>
+
+
+          <h1>
+            교육을 넘어,<br>
+            <span>
+              업무가 바뀌는<br>
+              순간까지.
+            </span>
+          </h1>
+
+
+          <p class="hero-description">
+            AI·AX부터 리더십·성과관리·조직문화까지.
+            ODS Group은 조직의 문제를
+            교육·컨설팅·실행으로 연결합니다.
+          </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              href="#contact"
+              class="button button-primary"
+            >
+              맞춤 제안 받기
+              <span>→</span>
+            </a>
+
+            <a
+              href="#cases"
+              class="button button-outline"
+            >
+              프로젝트 보기
+              <span>↘</span>
+            </a>
+
+          </div>
+
+
+          <div class="hero-meta">
+
+            <div class="hero-meta-item">
+              <strong>AI & AX</strong>
+              <span>업무혁신 · 자동화</span>
+            </div>
+
+            <div class="hero-meta-item">
+              <strong>HRD</strong>
+              <span>Leadership · Performance</span>
+            </div>
+
+            <div class="hero-meta-item">
+              <strong>HRM</strong>
+              <span>People · Culture</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- HERO ART -->
+
+        <div class="hero-visual reveal">
+
+          <div class="hero-panel">
+
+            <div class="hero-panel-grid"></div>
+
+            <div class="hero-orbit"></div>
+
+            <div class="hero-panel-copy">
+              <small>
+                ODS GROUP · TRANSFORMATION
+              </small>
+
+              <strong>
+                Learning<br>
+                to Change.
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div class="floating-card first">
+
+            <small>
+              SOLUTION 01
+            </small>
+
+            <strong>
+              AI & AX
+            </strong>
+
+            <span>
+              Workflow Transformation
+            </span>
+
+          </div>
+
+
+          <div class="floating-card second">
+
+            <small>
+              PEOPLE 02
+            </small>
+
+            <strong>
+              Leadership
+            </strong>
+
+            <span>
+              Performance · HRM
+            </span>
+
+          </div>
+
+
+          <div class="hero-yellow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PARTNERS
+    ====================================================== -->
+
+<section class="partners">
+
+  <div class="partners-label">
+    TRUSTED BY LEADING ORGANIZATIONS
+  </div>
+
+  <div class="marquee">
+
+    <div
+      class="marquee-track"
+      id="partnerTrack"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+
+    <section
+      class="section services"
+      id="services"
+    >
+
+      <div class="container">
+
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-label">
+              WHAT WE DO
+            </div>
+
+            <h2 class="section-title">
+              조직의 문제에 맞는<br>
+              <span>
+                성장 솔루션을 설계합니다.
+              </span>
+            </h2>
+
+          </div>
+
+
+          <p class="section-head-copy">
+            정해진 교육과정을 판매하는 것이 아니라,
+            기업과 구성원의 상황을 분석해
+            실제 변화로 이어질 수 있는 경험을 설계합니다.
+          </p>
+
+        </div>
+
+
+
+        <div class="bento">
+
+          <!-- AI & AX -->
+
+          <article
+            class="service-card service-main reveal"
+          >
+
+            <div class="service-bg-circle"></div>
+
+            <div class="service-index">
+              01
+            </div>
+
+            <div class="service-visual">
+              AI
+            </div>
+
+            <div class="service-copy">
+
+              <span class="service-category">
+                AI TRANSFORMATION
+              </span>
+
+              <h3>
+                AI & AX
+              </h3>
+
+              <p>
+                일하는 방식을 AI로 다시 설계합니다.
+                단순한 툴 교육을 넘어 실제 업무와
+                AI를 연결합니다.
+              </p>
+
+              <div class="tags">
+                <span>생성형 AI</span>
+                <span>업무 자동화</span>
+                <span>데이터 분석</span>
+                <span>AI 기획</span>
+              </div>
+
+              <a
+                href="ai-ax.html"
+                class="service-link"
+              >
+                AI & AX 살펴보기 →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Leadership -->
+
+          <article class="service-card reveal">
+
+            <div class="service-index">
+              02
+            </div>
+
+            <div class="service-copy">
+
+              <span class="service-category">
+                LEADERSHIP
+              </span>
+
+              <h3>
+                Leadership
+              </h3>
+
+              <p>
+                성과를 만드는 리더의
+                행동과 커뮤니케이션을 설계합니다.
+              </p>
+
+              <div class="tags">
+                <span>신임팀장</span>
+                <span>코칭</span>
+                <span>피드백</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Performance -->
+
+          <article class="service-card reveal">
+
+            <div class="service-index">
+              03
+            </div>
+
+            <div class="service-copy">
+
+              <span class="service-category">
+                PERFORMANCE
+              </span>
+
+              <h3>
+                Performance
+              </h3>
+
+              <p>
+                평가를 넘어 지속적으로
+                성과를 만들어내는 과정을 설계합니다.
+              </p>
+
+              <div class="tags">
+                <span>성과관리</span>
+                <span>1on1</span>
+                <span>평가</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- HRM -->
+
+          <article
+            class="service-card service-wide reveal"
+          >
+
+            <div class="service-index">
+              04
+            </div>
+
+            <div class="service-copy">
+
+              <span class="service-category">
+                PEOPLE & CULTURE
+              </span>
+
+              <h3>
+                HRM & Culture
+              </h3>
+
+              <p>
+                사람과 조직이 함께 성장할 수 있는
+                환경과 문화를 설계합니다.
+              </p>
+
+              <div class="tags">
+                <span>조직문화</span>
+                <span>팀빌딩</span>
+                <span>성향진단</span>
+                <span>세대소통</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CASE STUDIES
+    ====================================================== -->
+
+    <section
+      class="section cases"
+      id="cases"
+    >
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-label">
+              SELECTED CASES
+            </div>
+
+            <h2 class="section-title">
+              교육이 실제 현업에서<br>
+              <span>
+                어떻게 작동하는지 보여드립니다.
+              </span>
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="case-grid">
+
+
+          <!-- CASE 01 -->
+
+          <article class="case-card reveal">
+
+            <div class="case-visual ai">
+
+              <div class="case-lines"></div>
+
+              <div class="case-number">
+                01
+              </div>
+
+              <div class="case-symbol">
+                AI<br>WORK
+              </div>
+
+            </div>
+
+            <div class="case-info">
+
+              <span>
+                MANUFACTURING × AI
+              </span>
+
+              <h3>
+                제조기업<br>
+                AI 업무혁신 프로젝트
+              </h3>
+
+              <p>
+                실제 업무 데이터를 중심으로
+                AI와 Excel, 문서 업무를 연결하는
+                실무형 프로그램입니다.
+              </p>
+
+              <a
+                href="ai-ax.html"
+                class="case-link"
+              >
+                CASE 보기 →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- CASE 02 -->
+
+          <article class="case-card reveal">
+
+            <div class="case-visual leadership">
+
+              <div class="case-lines"></div>
+
+              <div class="case-number">
+                02
+              </div>
+
+              <div class="case-symbol">
+                LEAD<br>ERS
+              </div>
+
+            </div>
+
+            <div class="case-info">
+
+              <span>
+                LEADERSHIP DEVELOPMENT
+              </span>
+
+              <h3>
+                신임 팀장<br>
+                Leadership Boost-up
+              </h3>
+
+              <p>
+                리더 역할 전환부터 성과관리,
+                면담과 피드백까지 연결하는
+                리더십 프로그램입니다.
+              </p>
+
+              <a
+                href="#contact"
+                class="case-link"
+              >
+                문의하기 →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- CASE 03 -->
+
+          <article class="case-card reveal">
+
+            <div class="case-visual culture">
+
+              <div class="case-lines"></div>
+
+              <div class="case-number">
+                03
+              </div>
+
+              <div class="case-symbol">
+                TEAM<br>UP
+              </div>
+
+            </div>
+
+            <div class="case-info">
+
+              <span>
+                ORGANIZATION CULTURE
+              </span>
+
+              <h3>
+                조직문화 &<br>
+                Communication Workshop
+              </h3>
+
+              <p>
+                구성원의 참여와 소통을 중심으로
+                우리 조직에 필요한 문화를
+                함께 만드는 프로그램입니다.
+              </p>
+
+              <a
+                href="#contact"
+                class="case-link"
+              >
+                문의하기 →
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         APPROACH
+    ====================================================== -->
+
+    <section
+      class="section approach"
+      id="about"
+    >
+
+      <div class="container">
+
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-label light">
+              OUR APPROACH
+            </div>
+
+            <h2 class="section-title">
+              교육 하나를 만들더라도<br>
+              <span>
+                조직의 문제부터 봅니다.
+              </span>
+            </h2>
+
+          </div>
+
+
+          <p class="section-head-copy">
+            사전 진단부터 프로그램 설계,
+            실무 실습과 현업 적용까지
+            하나의 흐름으로 연결합니다.
+          </p>
+
+        </div>
+
+
+
+        <div class="process">
+
+          <article class="process-item">
+
+            <span class="process-number">
+              01
+            </span>
+
+            <span class="process-en">
+              DISCOVER
+            </span>
+
+            <h3>
+              문제 진단
+            </h3>
+
+            <p>
+              담당자 인터뷰와 조직 현황을 통해
+              해결해야 하는 문제를 정의합니다.
+            </p>
+
+          </article>
+
+
+          <article class="process-item">
+
+            <span class="process-number">
+              02
+            </span>
+
+            <span class="process-en">
+              DESIGN
+            </span>
+
+            <h3>
+              맞춤 설계
+            </h3>
+
+            <p>
+              대상자와 교육 목표에 맞는
+              커리큘럼과 실습을 설계합니다.
+            </p>
+
+          </article>
+
+
+          <article class="process-item">
+
+            <span class="process-number">
+              03
+            </span>
+
+            <span class="process-en">
+              PRACTICE
+            </span>
+
+            <h3>
+              실무 실습
+            </h3>
+
+            <p>
+              실제 업무와 가까운 사례와 데이터를
+              중심으로 직접 실행합니다.
+            </p>
+
+          </article>
+
+
+          <article class="process-item">
+
+            <span class="process-number">
+              04
+            </span>
+
+            <span class="process-en">
+              APPLY
+            </span>
+
+            <h3>
+              현업 적용
+            </h3>
+
+            <p>
+              교육에서 만든 결과물을
+              실제 업무로 연결합니다.
+            </p>
+
+          </article>
+
+
+          <article class="process-item">
+
+            <span class="process-number">
+              05
+            </span>
+
+            <span class="process-en">
+              FOLLOW-UP
+            </span>
+
+            <h3>
+              결과 확인
+            </h3>
+
+            <p>
+              후속 피드백을 통해
+              변화가 지속될 수 있도록 돕습니다.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROGRAMS
+    ====================================================== -->
+
+    <section
+      class="section programs"
+      id="programs"
+    >
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-label">
+              FEATURED PROGRAMS
+            </div>
+
+            <h2 class="section-title">
+              조직에 가장 필요한<br>
+              <span>
+                대표 프로그램
+              </span>
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="program-list">
+
+
+          <a
+            href="ai-ax.html"
+            class="program reveal"
+          >
+
+            <span class="program-no">
+              01
+            </span>
+
+            <span class="program-category">
+              AI & AX
+            </span>
+
+            <h3>
+              AI 업무 혁신 실전
+            </h3>
+
+            <p>
+              실제 업무를 기반으로 AI를 활용하고
+              자동화 워크플로우까지 설계합니다.
+            </p>
+
+            <span class="program-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+
+          <a
+            href="#contact"
+            class="program reveal"
+          >
+
+            <span class="program-no">
+              02
+            </span>
+
+            <span class="program-category">
+              LEADERSHIP
+            </span>
+
+            <h3>
+              Leadership Boost-up
+            </h3>
+
+            <p>
+              리더 역할 전환부터 목표관리,
+              면담과 피드백까지 연결합니다.
+            </p>
+
+            <span class="program-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+
+          <a
+            href="#contact"
+            class="program reveal"
+          >
+
+            <span class="program-no">
+              03
+            </span>
+
+            <span class="program-category">
+              CULTURE
+            </span>
+
+            <h3>
+              조직문화 형성 과정
+            </h3>
+
+            <p>
+              참여와 커뮤니케이션을 기반으로
+              조직에 필요한 문화를 설계합니다.
+            </p>
+
+            <span class="program-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         NUMBERS
+
+         중요:
+         현재 XX 숫자는 실제 실적 확인 후 수정
+    ====================================================== -->
+
+    <section class="stats">
+
+      <div class="container stats-grid">
+
+        <div class="reveal">
+
+          <div class="section-label">
+            ODS GROUP IN NUMBERS
+          </div>
+
+          <h2 class="section-title">
+            숫자로 확인하는<br>
+            <span>
+              ODS의 경험.
+            </span>
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <div class="stat-list">
+
+            <div class="stat reveal">
+              <strong>
+                120<small>+</small>
+              </strong>
+
+              <span>
+                함께한 기업·기관
+              </span>
+            </div>
+
+            <div class="stat reveal">
+              <strong>
+                100<small>+</small>
+              </strong>
+
+              <span>
+                교육·컨설팅 프로젝트
+              </span>
+            </div>
+
+            <div class="stat reveal">
+              <strong>
+                4.8<small>/5</small>
+              </strong>
+
+              <span>
+                교육 만족도
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="stats-note">
+            ※ 실제 검증된 실적 수치로 교체해 주세요.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TESTIMONIAL
+    ====================================================== -->
+
+    <section class="section testimonial">
+
+      <div class="container">
+
+        <div class="section-label reveal">
+          CLIENT VOICES
+        </div>
+
+
+        <div class="quote-box reveal">
+
+          <div class="quote-mark">
+            “
+          </div>
+
+          <blockquote>
+            이론을 듣는 데서 끝나지 않고,
+            실제 업무를 활용해 바로 적용해볼 수 있다는 점이
+            가장 인상적이었습니다.
+          </blockquote>
+
+
+          <div class="quote-footer">
+
+            <div class="quote-company">
+
+              <strong>
+                K사
+              </strong>
+
+              <span>
+                제조업 · 혁신추진팀
+              </span>
+
+            </div>
+
+
+            <span class="quote-count">
+              CLIENT VOICE
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INSIGHT
+    ====================================================== -->
+
+    <section
+      class="section insights"
+      id="insight"
+    >
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-label">
+              INSIGHT
+            </div>
+
+            <h2 class="section-title">
+              HR과 AI의 변화를<br>
+              <span>
+                먼저 읽습니다.
+              </span>
+            </h2>
+
+          </div>
+
+
+          <!-- 실제 블로그 주소 -->
+          <a
+            href="https://blog.naver.com/odsgroup1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button-outline"
+          >
+            블로그 바로가기 →
+          </a>
+
+        </div>
+
+
+
+        <div class="insight-grid">
+
+
+          <a
+            href="https://blog.naver.com/odsgroup1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="insight-card reveal"
+          >
+
+            <div class="insight-top">
+              <span>AI</span>
+              <span>INSIGHT</span>
+            </div>
+
+            <h3>
+              기업 AI 교육이
+              실패하는 이유
+            </h3>
+
+            <span class="insight-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+
+          <a
+            href="https://blog.naver.com/odsgroup1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="insight-card reveal"
+          >
+
+            <div class="insight-top">
+              <span>HRD</span>
+              <span>INSIGHT</span>
+            </div>
+
+            <h3>
+              HRD 담당자가
+              주목해야 할 변화
+            </h3>
+
+            <span class="insight-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+
+          <a
+            href="https://blog.naver.com/odsgroup1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="insight-card reveal"
+          >
+
+            <div class="insight-top">
+              <span>LEADERSHIP</span>
+              <span>INSIGHT</span>
+            </div>
+
+            <h3>
+              요즘 팀장에게 필요한
+              성과관리 방식
+            </h3>
+
+            <span class="insight-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section
+      class="contact"
+      id="contact"
+    >
+
+      <div class="container">
+
+        <div class="contact-card reveal">
+
+          <div class="contact-glow"></div>
+
+
+          <div class="contact-content">
+
+            <span class="contact-label">
+              LET'S MAKE CHANGE
+            </span>
+
+            <h2>
+              우리 조직에도<br>
+              변화가 필요하신가요?
+            </h2>
+
+            <p>
+              AI·AX부터 HR까지.<br>
+              조직의 상황과 목표에 맞는
+              교육·컨설팅을 함께 설계합니다.
+            </p>
+
+
+            <div class="contact-actions">
+
+              <a
+                href="mailto:ods_kmw@odsgroup.co.kr?subject=ODS Group 교육·컨설팅 문의"
+                class="button button-white"
+              >
+                제안 요청하기
+                <span>→</span>
+              </a>
+
+
+              <a
+                href="tel:07087789816"
+                class="button button-outline"
+                style="
+                  background:transparent;
+                  border-color:#35383f;
+                  color:white;
+                "
+              >
+                전화 문의
+              </a>
+
+            </div>
+
+
+            <div class="contact-info">
+
+              <div class="contact-info-item">
+
+                <small>
+                  TEL
+                </small>
+
+                <a href="tel:07087789816">
+                  070-8778-9816
+                </a>
+
+              </div>
+
+
+              <div class="contact-info-item">
+
+                <small>
+                  EMAIL
+                </small>
+
+                <a href="mailto:ods_kmw@odsgroup.co.kr">
+                  ods_kmw@odsgroup.co.kr
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+
+        <a
+  href="#top"
+  class="brand"
+>
+  <img
+    src="logo.png"
+    alt="ODS Group"
+    class="brand-logo"
+  >
+</a>
+
+          <p>
+            AI · HRD · HRM Consulting
+          </p>
+
+        </div>
+
+
+        <div class="footer-nav">
+
+          <div class="footer-column">
+
+            <strong>
+              Explore
+            </strong>
+
+            <a href="#services">
+              Services
+            </a>
+
+            <a href="#programs">
+              Programs
+            </a>
+
+            <a href="#cases">
+              Cases
+            </a>
+
+            <a href="#insight">
+              Insight
+            </a>
+
+          </div>
+
+
+          <div class="footer-column">
+
+            <strong>
+              Company
+            </strong>
+
+            <a href="#about">
+              About
+            </a>
+
+            <a href="#contact">
+              Contact
+            </a>
+
+          </div>
+
+
+          <div class="footer-column">
+
+            <strong>
+              Contact
+            </strong>
+
+            <a href="tel:07087789816">
+              070-8778-9816
+            </a>
+
+            <a href="mailto:ods_kmw@odsgroup.co.kr">
+              ods_kmw@odsgroup.co.kr
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 ODS Group.
+          All rights reserved.
+        </span>
+
+        <span>
+          AI · HRD · HRM Consulting
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- MOBILE FIXED BUTTON -->
+
+  <a
+    href="#contact"
+    class="mobile-contact"
+  >
+    교육·컨설팅 문의
+  </a>
+
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    /* ----------------------------------------
+       HEADER
+    ---------------------------------------- */
+
+    const header =
+      document.getElementById("header");
+
+    const updateHeader = () => {
+
+      if (window.scrollY > 20) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    };
+
+    window.addEventListener(
+      "scroll",
+      updateHeader,
+      { passive: true }
+    );
+
+    updateHeader();
+
+
+
+    /* ----------------------------------------
+       SCROLL REVEAL
+    ---------------------------------------- */
+
+    const revealItems =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target
+                .classList
+                .add("visible");
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.1
         }
-    </script>
+
+      );
+
+
+    revealItems.forEach(
+      item =>
+        observer.observe(item)
+    );
+
+
+
+    /* ----------------------------------------
+       MOBILE MENU
+    ---------------------------------------- */
+
+    const menuButton =
+      document.getElementById(
+        "menuButton"
+      );
+
+    const nav =
+      document.getElementById(
+        "nav"
+      );
+
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        const opened =
+          nav.classList.toggle(
+            "mobile-open"
+          );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          opened
+        );
+
+      }
+    );
+
+
+    nav
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            nav.classList.remove(
+              "mobile-open"
+            );
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+        );
+
+      });
+
+
+
+    /* ----------------------------------------
+       HERO SUBTLE MOVEMENT
+    ---------------------------------------- */
+
+    const heroVisual =
+      document.querySelector(
+        ".hero-visual"
+      );
+
+
+    if (heroVisual) {
+
+      window.addEventListener(
+        "mousemove",
+        event => {
+
+          if (
+            window.innerWidth < 900
+          ) return;
+
+
+          const x =
+            (
+              event.clientX /
+              window.innerWidth
+              - .5
+            ) * 7;
+
+
+          const y =
+            (
+              event.clientY /
+              window.innerHeight
+              - .5
+            ) * 7;
+
+
+          heroVisual.style.transform =
+            `translate3d(${x}px, ${y}px, 0)`;
+
+        }
+      );
+
+    }
+/* =========================================
+   PARTNER LOGOS
+========================================= */
+
+const partnerLogos = [
+
+  {
+    src: "kyungshin%20logo.png",
+    alt: "Kyungshin"
+  },
+
+  {
+    src: "SK%20logo.svg",
+    alt: "SK"
+  },
+
+  {
+    src: "hyundae-bng.png",
+    alt: "Hyundae BNG"
+  },
+
+  {
+    src: "Shinsegae%20I%20%26%20C.jpg",
+    alt: "Shinsegae I&C"
+  },
+
+  {
+    src: "bucheon.png",
+    alt: "Bucheon"
+  },
+
+  {
+    src: "yongma.png",
+    alt: "Yongma"
+  }
+
+];
+
+
+/* partner-07.png ~ partner-55.png 자동 추가 */
+
+for (let i = 7; i <= 55; i++) {
+
+  const number =
+    String(i).padStart(2, "0");
+
+  partnerLogos.push({
+    src: `partner-${number}.png`,
+    alt: `Partner ${number}`
+  });
+
+}
+
+
+const partnerTrack =
+  document.getElementById(
+    "partnerTrack"
+  );
+
+
+function createPartnerSet(hidden = false) {
+
+  const set =
+    document.createElement("div");
+
+  set.className =
+    "partner-set";
+
+  if (hidden) {
+    set.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+  }
+
+
+  partnerLogos.forEach(
+    partner => {
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "partner-logo";
+
+
+      const img =
+        document.createElement("img");
+
+      img.src =
+        partner.src;
+
+      img.alt =
+        hidden
+          ? ""
+          : partner.alt;
+
+      img.loading =
+        "lazy";
+img.onerror = () => {
+  wrapper.remove();
+};
+
+      wrapper.appendChild(img);
+
+      set.appendChild(wrapper);
+
+    }
+  );
+
+
+  return set;
+}
+
+
+/* 무한 롤링을 위해 동일 세트를 2번 생성 */
+
+partnerTrack.appendChild(
+  createPartnerSet(false)
+);
+
+partnerTrack.appendChild(
+  createPartnerSet(true)
+);
+  </script>
+
 </body>
 </html>
